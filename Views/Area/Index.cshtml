@@ -1,0 +1,143 @@
+﻿@model List<AreaDTO>
+<div class="d-flex justify-content-between align-items-center">
+    <!-- Breadcrumb Section -->
+    <div>
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item">Inventario</li>
+            <li class="breadcrumb-item text-primary">Área</li>
+        </ol>
+    </div>
+
+    <!-- Search Form Section -->
+    <div class="d-flex justify-content-between align-items-center ms-auto">
+        <!-- Search Form Section -->
+        <form method="get" asp-controller="Area" asp-action="Index">
+            <div class="input-group mb-0">
+                <input type="number" name="buscaid" class="form-control" placeholder="Buscar..." />
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+            </div>
+        </form>
+
+        <!-- Add Button Section -->
+        <button class="btn btn-primary mb-0 ms-2" type="button" onclick="mostrarFormulario('', 0, '')">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+        </button>
+    </div>
+
+</div>
+
+
+<div class="table-responsive">
+    <div class="card custom-card">
+        <div class="card-body">
+            <table class="table table-bordered text-nowrap key-buttons border-bottom w-100 dataTable no-footer dtr-inline">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+
+                        <th class="text-center">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     @foreach (var i in Model)
+                    {
+                        <tr>
+                            <td>@i.Id</td>
+                            <td>@i.Nombre</td>
+                            <td>
+                                <button class="btn btn-primary" onclick="mostrarDetalle(@i.Id, '@i.Nombre')" type="button">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                </button>
+                                <button class="btn btn-warning" onclick="mostrarFormulario('actualizar', @i.Id, '@i.Nombre')" type="button">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </button>
+                                <button class="btn btn-danger" onclick="EliminarArea(@i.Id)" type="button">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    } 
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .table td:last-child {
+        white-space: nowrap;
+        width: 1%;
+        text-align: center;
+    }
+</style>
+<div class="modal fade" id="dialog1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Vista de Información</h5>
+                <button type="button" class=" fa fa-times btn-close" style="font-size: 20px" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var i in Model)
+                            {
+                                <tr>
+                                    <td>@i.Id</td>
+                                    <td>@i.Nombre</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="detelle-modal">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="titelid-modal">Registro de datos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <form method="post" asp-controller="Area" asp-action="InsertUpdate" id="from-usuarios">
+                        <input type="hidden" id="recordId" name="id" value="" />
+                        <div class="mb-3">
+                            <label for="Nombre" class="form-label">Nombre</label>
+                            <input class="form-control" type="text" id="Nombre" name="Nombre" placeholder="Ingrese el nombre" required />
+                        </div>
+                        <div class="d-flex flex-row justify-content-end mt-2">
+                            <button class="btn btn-danger ms-2" id="cerrar" type="button" data-bs-dismiss="modal">Cerrar</button>
+                            <button class="btn btn-primary ms-2" id="guardar" type="submit">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+    <script src="/assets/js/Area/area.js" asp-append-version="true"></script>
+
+}
+
+
+
+

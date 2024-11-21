@@ -1,0 +1,242 @@
+﻿@model List<prueba3DTO>;
+
+@section css {
+    <link href="~/assets/css/style/styleApi.css" asp-append-version="true" rel="stylesheet" />
+}
+
+<style>
+    /* Estilo oculto para un botón que no se usa actualmente */
+    .try {
+        display: none;
+    }
+</style>
+
+<!-- PAGE-HEADER -->
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Cart</h1>
+    </div>
+    <div class="pageheader-btn">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Vista</li>
+            <li class="breadcrumb-item text-primary">Información de Link Api</li>
+        </ol>
+    </div>
+    <div class="ms-auto">
+        <button class="btn btn-primary ms-2" type="button" onclick="detalle(0)">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>
+<!-- PAGE-HEADER END -->
+
+<div class="row">
+    <div class="col-xl-12 col-md-12">
+        <div class="card cart">
+            <div class="card-body">
+                <div class="text-center ms-auto">
+                    <div class="d-flex flex-row justify-content-end mb-2">
+                        <div class="col-3">
+                            <form method="get" asp-controller="FromProof" asp-action="Index">
+                                <div class="input-group mb-3">
+                                    <input type="number" name="buscaid" class="form-control" placeholder="Buscar..." />
+                                    <button class="btn btn-primary" type="submit" data-bs-toggle="modal">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>Tabla de información</h4> <!-- Agregado para claridad -->
+                <div class="table-responsive">
+                    <table class="table text-nowrap text-md-nowrap table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>codSecundario1</th>
+                                <th>codSecundario2</th>
+                                <th>codSecundario3</th>
+                                <th>codSecundario4</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var i in Model)
+                            {
+                                <tr>
+                                    <td>@i.id</td>
+                                    <td>@i.codSecundario1</td>
+                                    <td>@i.codSecundario2</td>
+                                    <td>@i.codSecundario3</td>
+                                    <td>@i.codSecundario4</td>
+                                    <td class="d-flex flex-row justify-content-center" style="border: 0 !important;">
+                                        <button class="btn btn-primary" onclick="detalle(@i.id)" title="Crear" name="buscausua" type="button">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill-add" viewBox="0 0 16 16">
+                                                <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                                <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
+                                            </svg>
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="dialog1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exModalLabel">Registro de datos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>codSecundario1</th>
+                            <th>codSecundario2</th>
+                            <th>codSecundario3</th>
+                            <th>codSecundario5</th>
+                            <th>codSecundario6</th>
+                            <th>codSecundario7</th>
+                            <th>codSecundario8</th>
+                            <th>codSecundario9</th>
+                            <th>codSecundario10</th>
+                            <th>codSecundario11</th>
+                            <th>codSecundario12</th>
+                            <th>codSecundario13</th>
+                            <th>codSecundario14</th>
+                            <th>codSecundario15</th>
+                            <th>codSecundario16</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            @foreach (var i in Model)
+                            {
+                                <tr>
+                                    <td>@i.id</td>
+                                    <td>@i.codSecundario1</td>
+                                    <td>@i.codSecundario2</td>
+                                    <td>@i.codSecundario3</td>
+                                    <td>@i.codSecundario4</td>
+                                    <td>@i.codSecundario5</td>
+                                    <td>@i.codSecundario6</td>
+                                    <td>@i.codSecundario7</td>
+                                    <td>@i.codSecundario8</td>
+                                    <td>@i.codSecundario9</td>
+                                    <td>@i.codSecundario10</td>
+                                    <td>@i.codSecundario11</td>
+                                    <td>@i.codSecundario12</td>
+                                    <td>@i.codSecundario13</td>
+                                    <td>@i.codSecundario14</td>
+                                    <td>@i.codSecundario15</td>
+                                    <td>@i.codSecundario16</td>
+                                </tr>
+                            }
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="detelle-modal">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="titelid-modal">Registro de datos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <form method="post" asp-controller="FromProof" asp-action="InsertDTO" id="from-usuarios">
+                        <div class="row">
+                            <div class="col-12 col-md-6 mb-3">
+                                <label for="codSecundario1" class="form-label">Código Secundario 1</label>
+                                <input class="form-control" type="text" id="codSecundario1" name="codSecundario1" placeholder="" />
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <label for="codSecundario2" class="form-label">Código Secundario 2</label>
+                                <input class="form-control" type="text" id="codSecundario2" name="codSecundario2" placeholder="" />
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <label for="codSecundario3" class="form-label">Código Secundario 3</label>
+                                <input class="form-control" type="text" id="codSecundario3" name="codSecundario3" placeholder="" />
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <label for="codSecundario4" class="form-label">Código Secundario 4</label>
+                                <input class="form-control" type="text" id="codSecundario4" name="codSecundario4" placeholder="" />
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <label for="codSecundario5" class="form-label">Código Secundario 5</label>
+                                <input class="form-control" type="text" id="codSecundario5" name="codSecundario5" placeholder="" />
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <label for="codSecundario6" class="form-label">Código Secundario 6</label>
+                                <input class="form-control" type="text" id="codSecundario6" name="codSecundario6" placeholder="" />
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <label for="codSecundario7" class="form-label">Código Secundario 7</label>
+                                <input class="form-control" type="text" id="codSecundario7" name="codSecundario7" placeholder="" />
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <label for="codSecundario8" class="form-label">Código Secundario 8</label>
+                                <input class="form-control" type="text" id="codSecundario8" name="codSecundario8" placeholder="" />
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <label for="codSecundario9" class="form-label">Código Secundario 9</label>
+                                <input class="form-control" type="text" id="codSecundario9" name="codSecundario9" placeholder="" />
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <label for="codSecundario10" class="form-label">Código Secundario 10</label>
+                                <input class="form-control" type="text" id="codSecundario10" name="codSecundario10" placeholder="" />
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <label for="codSecundario11" class="form-label">Código Secundario 11</label>
+                                <input class="form-control" type="text" id="codSecundario11" name="codSecundario11" placeholder="" />
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <label for="codSecundario13" class="form-label">Código Secundario 13</label>
+                                <input class="form-control" type="text" id="codSecundario13" name="codSecundario13" placeholder="" />
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <label for="codSecundario14" class="form-label">Código Secundario 14</label>
+                                <input class="form-control" type="text" id="codSecundario14" name="codSecundario14" placeholder="" />
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <label for="codSecundario15" class="form-label">Código Secundario 15</label>
+                                <input class="form-control" type="text" id="codSecundario15" name="codSecundario15" placeholder="" />
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <label for="codSecundario16" class="form-label">Código Secundario 16</label>
+                                <input class="form-control" type="text" id="codSecundario16" name="codSecundario16" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row justify-content-end mt-2">
+                            <button class="btn btn-primary try" id="guardar" type="submit">Enviar</button>
+                            <button class="btn btn-danger ms-2" id="cerrar" type="button" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="/assets/js/App/apiApp.js" asp-append-version="true"></script>
+}
+
+
