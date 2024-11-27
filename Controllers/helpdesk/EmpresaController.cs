@@ -56,7 +56,7 @@ namespace noa.Controllers.helpdesk
             var httpClient = new HttpClient();
 
 
-            if (!string.IsNullOrEmpty(elementDTO.Id))
+            if (elementDTO.Id != 0)
             {
                 // Actualizar registro existente
                 var response = await httpClient.PutAsJsonAsync($"{_configuration["Inven:URL"]}/Empresa/{elementDTO.Id}", elementDTO);

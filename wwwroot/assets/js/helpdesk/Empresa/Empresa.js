@@ -1,23 +1,18 @@
-﻿document.addEventListener("DOMContentLoaded", function () {
-    ListaArea();
-    ListaPersonas();
-});
-
-function detellePersonas(accion, Id = null, Nombre = '', NitEmpresa = '') {
+﻿function detelleEmpresa(accion, Id = null, Nombre = '', NitEmpresa = '') {
     const modalTitle = document.getElementById('titelid-modal');
     const recordId = document.getElementById('recordId');
-    const nombredInput = document.getElementById('nombre');
-    const nitEmpresaInput = document.getElementById('nitEmpresa');
+    const NombreInput = document.getElementById('Nombre');
+    const NitEmpresaInput = document.getElementById('NitEmpresa');
 
     //Actualiza datos 
     if (accion === 'actualizar') {
         modalTitle.textContent = 'Actualizar Datos';
         recordId.value = Id;
-        NombredInput.value = userId;
+        NombreInput.value = Nombre;
         $("#Nombre").trigger("change");
-        NitEmpresaInput.value = idArea;
+        NitEmpresaInput.value = NitEmpresa;
         $("#NitEmpresa").trigger("change");
-        //Registra datos
+    //Registra datos
     } else {
         modalTitle.textContent = 'Registrar Datos';
         recordId.value = '';
@@ -27,7 +22,7 @@ function detellePersonas(accion, Id = null, Nombre = '', NitEmpresa = '') {
         $("#NitEmpresa").trigger("change");
     }
 
-    var myModal = new bootstrap.Modal(document.getElementById('detellePersonas-modal'));
+    var myModal = new bootstrap.Modal(document.getElementById('detelleEmpresa-modal'));
     myModal.show();
 }
 

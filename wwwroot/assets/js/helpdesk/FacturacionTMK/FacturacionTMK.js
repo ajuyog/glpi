@@ -81,7 +81,7 @@ function ListaIdensamble() {
             data.forEach(function (item) {
                 const option = $('<option></option>')
                     .val(item.id)
-                    .text(`${item.idElementType}`);
+                    .text(`${item.idElementType} - ${item.numeroSerial}`);
                 select.append(option);
             });
         },

@@ -9,6 +9,7 @@
         public bool Estado { get; set; }
         public string UserName { get; set; }
         public string AreaName { get; set; }
+        public int IdEmpresa { get; set; }
 
     }
 }

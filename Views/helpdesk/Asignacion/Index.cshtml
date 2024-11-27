@@ -30,10 +30,10 @@
                     {
                         <tr>
                             <td>@i.Id</td>
-                            <td>@i.IdPersona</td>
-                            <td>@i.IdEnsamble</td>
+                            <td>@i.IdentificacionPersona</td>
+                            <td>@i.Numeroserial</td>
                             <td class="text-center">
-                                <button class="btn btn-primary" onclick="mostrarDetalle('@i.Id', '@i.IdPersona', '@i.IdEnsamble')" type="button">
+                                <button class="btn btn-primary" onclick="mostrarDetalle('@i.Id', '@i.IdentificacionPersona', '@i.Numeroserial')" type="button">
                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                 </button>
 
@@ -75,7 +75,6 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Id</th>
                                 <th>Nombre</th>
                                 <th>Id de ensamble</th>
                                 <th class="text-center">Más</th>
@@ -85,9 +84,8 @@
                             @foreach (var i in Model)
                             {
                                 <tr>
-                                    <td>@i.Id</td>
-                                    <td>@i.IdPersona</td>
-                                    <td>@i.IdEnsamble</td>
+                                    <td>@i.IdentificacionPersona</td>
+                                    <td>@i.Numeroserial</td>
                                 </tr>
                             }
                         </tbody>
@@ -138,7 +136,7 @@
 
 
 @section scripts {
-    <script src="\assets\js\Asignacion\Asignacion.js" asp-append-version="true"></script>
+    <script src="\assets\js\helpdesk\Asignacion\Asignacion.js" asp-append-version="true"></script>
     <script src="~/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
 
     <!-- jQuery UI Date Picker js -->

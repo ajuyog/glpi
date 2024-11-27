@@ -1,5 +1,4 @@
-﻿<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
-
+﻿
 <div class="d-flex justify-content-between align-items-center">
     <!-- Título -->
     <div>
@@ -9,11 +8,11 @@
         </ol>
     </div>
     <!-- Boton generar pdf -->
-    <button class="btn btn-primary btn-red" id="generarPdfBtn" type="button">
+    <button class="btn btn-primary btn-red" id="generate-pdf" type="button">
         <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
     </button>
 </div>
-<div id="contenido"> 
+<div id="content-to-pdf">
     <div class="row">
         <!-- Área TI -->
         <div class="col-12">
@@ -322,8 +321,81 @@
         </div>
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+@* <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script> *@
 
+<button id="generate-pdf2" class="btn btn-primary">PDF</button>
 @section scripts {
-    <script src="/assets/js/Centrocostos/Centrocostos.js" asp-append-version="true"></script>
+
+    <script src="/assets/js\helpdesk/Centrocostos/Centrocostos.js" asp-append-version="true"></script>
+
+    @* /* JS Selector Con Buscardor*/ *@
+    <!-- Bootstrap-Date Range Picker js-->
+    <script src="~/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+
+    <!-- jQuery UI Date Picker js -->
+    <script src="~/assets/plugins/date-picker/jquery-ui.js"></script>
+
+    <!-- bootstrap-datepicker js (Date picker Style-01) -->
+    <script src="~/assets/plugins/bootstrap-datepicker/js/datepicker.js"></script>
+
+    <!-- Amaze UI Date Picker js-->
+    <script src="~/assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js"></script>
+
+    <!-- Simple Date Time Picker js-->
+    <script src="~/assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js"></script>
+
+    <!-- Internal Treeview js -->
+    <script src="~/assets/plugins/treeview/treeview.js"></script>
+
+    <!--Internal Fileuploads js-->
+    <script src="~/assets/plugins/fileuploads/js/fileupload.js"></script>
+    <script src="~/assets/plugins/fileuploads/js/file-upload.js"></script>
+
+    <!-- INTERNAL Notifications js -->
+    <script src="~/assets/plugins/notify/js/notifIt.js"></script>
+
+    <!-- INTERNAL SELECT2 JS -->
+    <script src="~/assets/plugins/select2/select2.full.min.js"></script>
+    @* /* Fin JS Selector Con Buscardor  */ *@
+
+    @* /* JS Tabla Response */ *@
+    <!-- DATA TABLE JS-->
+@*     <script src="~/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+    <script src="~/assets/plugins/datatable/js/dataTables.buttons.min.js"></script>
+    <script src="~/assets/plugins/datatable/dataTables.responsive.min.js"></script>
+    <script src="~/assets/plugins/datatable/js/buttons.bootstrap5.min.js"></script>
+    <script src="~/assets/plugins/datatable/js/buttons.colVis.min.js"></script> *@
+    @* <script src="~/assets/js/table-data.js"></script> *@
+    @* /* Fin JS Tabla Response  */ *@
+
+    @* /* JS Selector Con Buscardor*/ *@
+    <!-- FORM ELEMENTADVANCED JS -->
+    @* <script src="~/assets/js/formelementadvnced.js" asp-append-version="true"></script> *@
+    @* /* Fin JS Selector Con Buscardor  */ *@
+
+    @* /* JS Temporizador */ *@
+    <!-- TIME COUNTER JS-->
+    <script src="~/assets/plugins/counters/jquery.missofis-countdown.js"></script>
+    @* /* FIN JS Temporizador */ *@
+
+
+    <!-- Habilitar en caso de que se utiliza PDF  -->
+    <!-- INTERNAL SELECT2 JS -->
+    @* <script src="~/assets/plugins/select2/select2.full.min.js"></script> *@
+
+    <!-- DATA TABLE JS-->
+    <script src="~/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+    <script src="~/assets/plugins/datatable/js/dataTables.bootstrap5.js"></script>
+    <script src="~/assets/plugins/datatable/js/dataTables.buttons.min.js"></script>
+    <script src="~/assets/plugins/datatable/js/buttons.bootstrap5.min.js"></script>
+    <script src="~/assets/plugins/datatable/js/jszip.min.js"></script>
+    <script src="~/assets/plugins/datatable/pdfmake/pdfmake.min.js"></script>
+    <script src="~/assets/plugins/datatable/pdfmake/vfs_fonts.js"></script>
+    <script src="~/assets/plugins/datatable/js/buttons.html5.min.js"></script>
+    <script src="~/assets/plugins/datatable/js/buttons.print.min.js"></script>
+    <script src="~/assets/plugins/datatable/js/buttons.colVis.min.js"></script>
+    <script src="~/assets/plugins/datatable/dataTables.responsive.min.js"></script>
+    <script src="~/assets/plugins/datatable/responsive.bootstrap5.min.js"></script>
+    <script src="~/assets/js/table-data.js"></script>
+
 }

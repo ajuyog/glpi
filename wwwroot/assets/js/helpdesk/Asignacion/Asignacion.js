@@ -1,70 +1,58 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
-    ListaArea();
     ListaPersonas();
+    ListaEnsamble();
 });
 
-function detellePersonas(accion, Id = null, userId = '', idArea = '', Identificacion = '', Estado = '') {
+function detelleAsignacion(accion, Id = null, IdPersona = '', IdEnsamble = '') {
+    // Obtener los elementos del DOM
     const modalTitle = document.getElementById('titelid-modal');
     const recordId = document.getElementById('recordId');
-    const userIdInput = document.getElementById('userId');
-    const idAreaInput = document.getElementById('idArea');
-    const identificacionInput = document.getElementById('identificacion');
-    const EstadoInput = document.getElementById('estado');
+    const IdPersonaInput = document.getElementById('IdPersona');
+    const IdEnsambleInput = document.getElementById('IdEnsamble');
 
-    //Actualiza datos 
     if (accion === 'actualizar') {
         modalTitle.textContent = 'Actualizar Datos';
         recordId.value = Id;
-        userIdInput.value = userId;
-        $("#userId").trigger("change");
-        idAreaInput.value = idArea;
-        $("#idArea").trigger("change");
-        identificacionInput.value = Identificacion;
-        EstadoInput.checked = Estado; // Establecer el valor de Estado según el parámetro pasado
+        IdPersonaInput.value = IdPersona;
+        $("#IdPersona").trigger("change")
+        IdEnsambleInput.value = IdEnsamble;
+        $("#IdEnsamble").trigger("change")
 
-        //Registra datos
     } else {
+
         modalTitle.textContent = 'Registrar Datos';
         recordId.value = '';
-        userIdInput.value = '';
-        $("#userId").trigger("change");
-        idAreaInput.value = '';
-        $("#idArea").trigger("change");
-        identificacionInput.value = '';
-        EstadoInput.checked = false; // Dejar como false por defecto en nuevo registro
+        IdPersonaInput.value = '';
+        $("#IdPersona").trigger("change"); // Resetear el select
+        IdEnsambleInput.value = '';
+        $("#IdEnsamble").trigger("change"); // Resetear el select
     }
 
-    var myModal = new bootstrap.Modal(document.getElementById('detellePersonas-modal'));
+    // Mostrar el modal
+    var myModal = new bootstrap.Modal(document.getElementById('detelleAsignacion'));
     myModal.show();
 }
 
 
-//Visualizacion de datos
-function mostrarDetalle(Id, UserName, AreaName, userId,idArea, Identificacion, Estado) {
+function mostrarDetalle(Id, dentificacionPersona, Numeroserial) {
     const modalBody = document.querySelector('#dialog1 .modal-body');
     modalBody.innerHTML = `
         <p><strong>Id:</strong> ${Id}</p>
-        <p><strong>Nombre:</strong> ${UserName}</p>
-        <p><strong>Área:</strong> ${AreaName}</p>
-        <p><strong>Identificación:</strong> ${Identificacion}</p>
-        <p><strong>NIT Emprea:</strong> ${userId}</p>
-        <p><strong>Empresa:</strong> ${idArea}</p>
-        <p><strong>Estado:</strong> ${Estado == 'True' ? 'Activo' : 'Inactivo'}
+        <p><strong>Tio de elemento:</strong> ${IdPersona}</p>
+        <p><strong>Marca:</strong> ${IdEnsamble}</p>
     `;
     $('#dialog1').modal('show');
 }
 
-
-//Elimina regsitros de la tabla
-function EliminarPersona(Id, Nombre) {
-    if (confirm('¿Estás seguro de que deseas eliminar el área ' + Nombre + '?')) {
+function EliminarAsignacion(Id, IdElementType) {
+    if (confirm('¿Estás seguro de que deseas eliminar el área ' + IdElementType + '?')) {
         $.ajax({
-            url: "/Personas/EliminarPersona",
+            url: "/Asignacion/EliminarAsignacion",
             type: 'DELETE',
             data: { deleteid: Id },
             success: function (usuario) {
                 if (usuario) {
-                    $(`tr#${id}`).remove();
+                    $(`tr#${Id}`).remove();
                     alert('El área fue eliminada correctamente.');
                 } else {
                     alert('Hubo un error al eliminar el área.');
@@ -77,43 +65,20 @@ function EliminarPersona(Id, Nombre) {
         });
     }
 }
-
-//Trae las listas de las areas
-function ListaArea() {
-    $.ajax({
-        url: "/Personas/ListaArea",
-        type: "GET",
-        success: function (data) {
-            const select = $('#idArea');
-            select.empty();
-            select.append('<option value="">Selecciona</option>');
-            data.forEach(function (item) {
-                const option = $('<option></option>')
-                    .val(item.id)
-                    .text(`${item.nombre}`);
-                select.append(option);
-            });
-        },
-        error: function (xhr, status, error) {
-            console.log('Error:', error);
-            alert('Hubo un error al cargar los datos.');
-        }
-    });
-}
-
-//Trae el listados de las personas
 function ListaPersonas() {
+
     $.ajax({
-        url: "/Personas/ListaPersonas",
+        url: "/Asignacion/ListaPersonas",
         type: "GET",
         success: function (data) {
-            const select = $('#userId');
+            const select = $('#IdPersona');
             select.empty();
             select.append('<option value="">Selecciona</option>');
             data.forEach(function (item) {
+
                 const option = $('<option></option>')
                     .val(item.id)
-                    .text(`${item.normalizedUserName}`);
+                    .text(`${item.userName}`);
                 select.append(option);
             });
         },
@@ -123,3 +88,29 @@ function ListaPersonas() {
         }
     });
 }
+function ListaEnsamble() {
+    $.ajax({
+        url: "/Asignacion/ListaEnsamble",
+        type: "GET",
+        success: function (data) {
+            console.log(data);
+            const select = $('#IdEnsamble');
+            select.empty();
+            select.append('<option value="">Selecciona</option>');
+            data.forEach(function (item) {
+
+                const option = $('<option></option>')
+                    .val(item.id)
+                    .text(`${item.idElementType}-${item.numeroSerial}`);
+                select.append(option);
+            });
+        },
+        error: function (xhr, status, error) {
+            console.log('Error:', error);
+            alert('Hubo un error al cargar los datos.');
+        }
+    });
+}
+
+
+
