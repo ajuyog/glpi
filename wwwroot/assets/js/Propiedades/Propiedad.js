@@ -13,6 +13,7 @@ function detellepropiedades(accion, Id = null, Propiedad = '', IdEnsamble = '') 
         recordId.value = Id;
         PropiedadInput.value = Propiedad;
         IdEnsambleInput.value = IdEnsamble;
+        $("#IdEnsamble").trigger("change"); 
 
     }
     else {
@@ -20,6 +21,7 @@ function detellepropiedades(accion, Id = null, Propiedad = '', IdEnsamble = '') 
         recordId.value = '';
         PropiedadInput.value = '';
         IdEnsambleInput.value = '';
+        $("#IdEnsamble").trigger("change"); 
 
     }
     var myModal = new bootstrap.Modal(document.getElementById('detellepropiedades'));
@@ -36,10 +38,10 @@ function mostrarDetalle(Id, Propiedad, EnsambleName, IdEnsamble) {
     $('#dialog1').modal('show');
 }
 
-function EliminarArea(Id, Propiedad) {
+function EliminarPropiedad(Id, Propiedad) {
     if (confirm('¿Estás seguro de que deseas eliminar el área ' + Propiedad + '?')) {
         $.ajax({
-            url: "/Propiedades/Eliminararea",
+            url: "/Propiedades/EliminarPropiedad",
             type: 'DELETE',
             data: { deleteid: Id },
             success: function (usuario) {
@@ -59,6 +61,7 @@ function EliminarArea(Id, Propiedad) {
     }
 }
 
+//Lista los ensamblajes 
 function ListaEnsamble() {
     $.ajax({
         url: "/Propiedades/ListaEnsamble",
@@ -66,18 +69,20 @@ function ListaEnsamble() {
         success: function (data) {
             const select = $('#IdEnsamble');
             select.empty();
-            select.append('<option value="">Selecciona</option>');
+            select.append('<option value="">Selecciona</option>');  
+
             data.forEach(function (item) {
                 const option = $('<option></option>')
-                    .val(item.id)
-                    .text(`${item.idElementType}`);
+                    .val(item.id)  
+                    .text(`${item.idElementType} - ${item.numeroSerial}`);
                 select.append(option);
             });
         },
         error: function (xhr, status, error) {
-            console.log('Error:', error);
-            alert('Hubo un error al cargar los datos.');
+            console.log('Error:', error); 
+            alert('Hubo un error al cargar los datos.');  
         }
     });
 }
+
 

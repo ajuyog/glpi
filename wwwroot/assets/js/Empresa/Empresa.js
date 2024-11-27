@@ -1,44 +1,59 @@
-﻿function mostrarFormulario(accion, Id = null, Nombre = '', Activo = '') {
+﻿document.addEventListener("DOMContentLoaded", function () {
+    ListaArea();
+    ListaPersonas();
+});
+
+function detellePersonas(accion, Id = null, Nombre = '', NitEmpresa = '') {
     const modalTitle = document.getElementById('titelid-modal');
     const recordId = document.getElementById('recordId');
-    const NombreInput = document.getElementById('Nombre');
-    const ActivoInput = document.getElementById('Activo');
+    const nombredInput = document.getElementById('nombre');
+    const nitEmpresaInput = document.getElementById('nitEmpresa');
 
+    //Actualiza datos 
     if (accion === 'actualizar') {
         modalTitle.textContent = 'Actualizar Datos';
         recordId.value = Id;
-        NombreInput.value = Nombre;
-        ActivoInput.checked = Activo; // Establecer el valor de Estado según el parámetro pasado
+        NombredInput.value = userId;
+        $("#Nombre").trigger("change");
+        NitEmpresaInput.value = idArea;
+        $("#NitEmpresa").trigger("change");
+        //Registra datos
     } else {
         modalTitle.textContent = 'Registrar Datos';
         recordId.value = '';
         NombreInput.value = '';
-        ActivoInput.checked = false; // Dejar como false por defecto en nuevo registro
+        $("#Nombre").trigger("change");
+        NitEmpresaInput.value = '';
+        $("#NitEmpresa").trigger("change");
     }
 
-    $('#detelle-modal').modal('show');
+    var myModal = new bootstrap.Modal(document.getElementById('detellePersonas-modal'));
+    myModal.show();
 }
 
-function mostrarDetalle(Id, Nombre, Activo) {
+
+//Visualizacion de datos
+function mostrarDetalle(Id, Nombre, NitEmpresa) {
     const modalBody = document.querySelector('#dialog1 .modal-body');
     modalBody.innerHTML = `
         <p><strong>Id:</strong> ${Id}</p>
-        <p><strong>Nombre de área:</strong> ${Nombre}</p>
-        <p><strong>Estado:</strong> ${Activo == 'True' ? 'Activo' : 'Inactivo'}
+        <p><strong>Nombre:</strong> ${Nombre}</p>
+        <p><strong>NIT:</strong> ${NitEmpresa}</p>
     `;
     $('#dialog1').modal('show');
 }
 
 
-function EliminarMarca(Id, Nombre) {
+//Elimina regsitros de la tabla
+function EliminarEmpresa(Id, Nombre) {
     if (confirm('¿Estás seguro de que deseas eliminar el área ' + Nombre + '?')) {
         $.ajax({
-            url: "/Marca/EliminarMarca",
+            url: "/Empresa/EliminarEmpresa",
             type: 'DELETE',
             data: { deleteid: Id },
             success: function (usuario) {
                 if (usuario) {
-                    $(`tr#${Id}`).remove();
+                    $(`tr#${id}`).remove();
                     alert('El área fue eliminada correctamente.');
                 } else {
                     alert('Hubo un error al eliminar el área.');

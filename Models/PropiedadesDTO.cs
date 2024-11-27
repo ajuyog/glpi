@@ -7,6 +7,6 @@
         public int IdEnsamble { get; set; }
         public string EnsambleName { get; set; }
 
-        
+
     }
 }

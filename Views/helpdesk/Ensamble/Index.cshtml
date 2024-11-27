@@ -1,0 +1,264 @@
+﻿@model List<EnsambleDTO>
+<div class="d-flex justify-content-between align-items-center">
+    <div>
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item">Inventario</li>
+            <li class="breadcrumb-item text-primary">Ensamble</li>
+        </ol>
+    </div>
+    <div>
+        <button class="btn btn-primary" type="button" onclick="detelleEnsamble('registrar', 0, '', '')">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <div class="card custom-card">
+        <div class="card-body">
+            <table class="table table-bordered text-nowrap key-buttons border-bottom w-100 dataTable no-footer dtr-inline">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <td>Tipo de elemento</td>
+                        <td>Marca</td>
+                        <td>Numero Serial</td>
+                        <td class="text-center">Estado</td>
+                        <td>Descripción</td>
+                        <td class="text-center">Renting</td>
+                        <th class="text-center">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var i in Model)
+                    {
+                        <tr>
+                            <td>@i.Id</td>
+                            @* <td>@i.IdElementType</td> *@
+                            <td>@i.TipoElemento</td>
+                            @* <td>@i.IdMarca</td> *@
+                            <td>@i.NombreMarca</td>
+                            <td>@i.NumeroSerial</td>
+                            <td class="text-center">
+                                @if (i.Estado)
+                                {
+                                    <i class="fa fa-check-circle" aria-hidden="true" style="color:#13e20c; font-size: 15px;"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa fa-times-circle" aria-hidden="true" style="color:#f72908; font-size: 15px;"></i>
+                                }
+                            </td>
+                            <td>@i.Descripcion</td>
+                            <td class="text-center">
+                                    @if (i.Renting)
+                                    {
+                                    <i class="fa fa-check-circle" aria-hidden="true" style="color:#13e20c; font-size: 15px;"></i>
+                                    }
+                                    else
+                                    {
+                                    <i class="fa fa-times-circle" aria-hidden="true" style="color:#f72908; font-size: 15px;"></i>
+                                    }
+                            </td>
+                            <td>
+                                <button class="btn btn-primary" onclick="mostrarDetalle('@i.Id','@i.TipoElemento', '@i.NombreMarca','@i.NumeroSerial','@i.Estado','@i.Descripcion','@i.Renting' )" type="button">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                </button>
+
+                                <button class="btn btn-warning" onclick="detelleEnsamble('actualizar', '@i.Id', '@i.IdElementType', '@i.IdMarca','@i.NumeroSerial','@i.Estado','@i.Descripcion','@i.Renting')" type="button">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </button>
+
+                                <button class="btn btn-danger" onclick="EliminarEnsamble(@i.Id)" type="button">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .table td:last-child {
+        white-space: nowrap;
+        width: 1%;
+        text-align: center;
+    }
+</style>
+
+<div class="modal fade" id="dialog1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Vista de Información</h5>
+
+                <button type="button" class=" fa fa-times btn-close" style="font-size: 20px" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <td>Tipo de elemento</td>
+                                <td>Marca</td>
+                                <td>NumeroSerial</td>
+                                <td>Estado</td>
+                                <td>Descripcion</td>
+                                <td>Renting</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var i in Model)
+                            {
+                                <tr>
+                                    <td>@i.Id</td>
+                                    @* <td>@i.IdElementType</td> *@
+                                    <td>@i.TipoElemento</td>
+                                    @* <td>@i.IdMarca</td> *@
+                                    <td>@i.NombreMarca</td>
+                                    <td>@i.NumeroSerial</td>
+                                    <td>@i.Estado</td>
+                                    <td>@i.Descripcion</td>
+                                    <td>@i.Renting</td>
+                                    <td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Bootstrap -->
+<div class="modal fade" id="detelleEnsamble" tabindex="-1" aria-labelledby="titelid-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="titelid-modal">Registro de Datos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <form method="post" asp-controller="Ensamble" asp-action="InsertUpdate" id="from-usuarios">
+                        <input type="hidden" id="recordId" name="id" value="" />
+
+                        <!-- Contenedor de las columnas -->
+                        <div class="row">
+                            <!-- Columna izquierda: primeros tres campos -->
+                            <div class="col-md-6">
+                                <!-- Campo de Tipo de Elemento -->
+                                <div class="mb-3">
+                                    <label for="IdElementType" class="form-label">Tipo de Elemento</label>
+                                    <select id="IdElementType" name="IdElementType" required class="form-control select3-show-search form-select">
+                                        <option value="">Selecciona un tipo de elemento</option>
+                                        <!-- Opciones del select se agregarán dinámicamente -->
+                                    </select>
+                                </div>
+
+                                <!-- Campo de Marca -->
+                                <div class="mb-3">
+                                    <label for="IdMarca" class="form-label">Seleccione una marca</label>
+                                    <select id="IdMarca" name="IdMarca" required class="form-control select3-show-search form-select">
+                                        <option value="">Selecciona</option>
+                                    </select>
+                                </div>
+
+                                <!-- Campo de Número de Serial -->
+                                <div class="mb-3">
+                                    <label for="NumeroSerial" class="form-label">Número de Serial del Equipo</label>
+                                    <input class="form-control" type="text" id="NumeroSerial" name="NumeroSerial" placeholder="Ej. ABC123456" required />
+                                </div>
+                            </div>
+
+                            <!-- Columna derecha: siguientes tres campos -->
+                            <div class="col-md-6">
+                                <!-- Campo de Estado (Checkbox debajo de la etiqueta) -->
+                                <div class="mb-3">
+                                    <label class="form-label" for="Estado">¿Está activo?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="Estado" name="Estado" value="true">
+                                        <label class="form-check-label" for="Estado">Marque si está activo</label>
+                                    </div>
+                                </div>
+
+                                <!-- Campo de Descripción -->
+                                <div class="mb-3">
+                                    <label for="Descripcion" class="form-label">Descripción</label>
+                                    <input class="form-control" type="text" id="Descripcion" name="Descripcion" placeholder="Ingrese una descripción del elemento" />
+                                </div>
+
+                                <!-- Campo de Renting -->
+                                <div class="mb-3">
+                                    <label class="form-label" for="Renting">¿Es de renting?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="Renting" name="Renting" value="true">
+                                        <label class="form-check-label" for="Renting">Marque si es de renting</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botones de acción -->
+                        <div class="d-flex flex-row justify-content-end mt-2">
+                            <button class="btn btn-danger ms-2" id="cerrar" type="button" data-bs-dismiss="modal">Cerrar</button>
+                            <button class="btn btn-primary ms-2" id="guardar" type="submit">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script src="/assets/js/Ensamble/Ensamble.js" asp-append-version="true"></script>
+
+    <!-- Bootstrap-Date Range Picker js-->
+    <script src="~/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+
+    <!-- jQuery UI Date Picker js -->
+    <script src="~/assets/plugins/date-picker/jquery-ui.js"></script>
+
+    <!-- bootstrap-datepicker js (Date picker Style-01) -->
+    <script src="~/assets/plugins/bootstrap-datepicker/js/datepicker.js"></script>
+
+    <!-- Amaze UI Date Picker js-->
+    <script src="~/assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js"></script>
+
+    <!-- Simple Date Time Picker js-->
+    <script src="~/assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js"></script>
+
+    <!-- SELECT2 JS -->
+    <script src="~/assets/plugins/select2/select2.full.min.js"></script>
+
+    <!-- BOOTSTRAP MAX-LENGTH JS -->
+    <script src="~/assets/plugins/bootstrap-maxlength/dist/bootstrap-maxlength.min.js"></script>
+
+    <!--Internal Fileuploads js-->
+    <script src="~/assets/plugins/fileuploads/js/fileupload.js"></script>
+    <script src="~/assets/plugins/fileuploads/js/file-upload.js"></script>
+
+    <!--Internal Fancy uploader js-->
+    <script src="~/assets/plugins/fancyuploder/jquery.ui.widget.js"></script>
+    <script src="~/assets/plugins/fancyuploder/jquery.fileupload.js"></script>
+    <script src="~/assets/plugins/fancyuploder/jquery.iframe-transport.js"></script>
+    <script src="~/assets/plugins/fancyuploder/jquery.fancy-fileupload.js"></script>
+    <script src="~/assets/plugins/fancyuploder/fancy-uploader.js"></script>
+
+    <!-- FORM ELEMENTADVANCED JS -->
+    <script src="~/assets/js/formelementadvnced.js" asp-append-version="true"></script>
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
+

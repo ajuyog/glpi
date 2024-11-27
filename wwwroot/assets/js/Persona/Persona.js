@@ -11,6 +11,7 @@ function detellePersonas(accion, Id = null, userId = '', idArea = '', Identifica
     const identificacionInput = document.getElementById('identificacion');
     const EstadoInput = document.getElementById('estado');
 
+    //Actualiza datos 
     if (accion === 'actualizar') {
         modalTitle.textContent = 'Actualizar Datos';
         recordId.value = Id;
@@ -20,6 +21,8 @@ function detellePersonas(accion, Id = null, userId = '', idArea = '', Identifica
         $("#idArea").trigger("change");
         identificacionInput.value = Identificacion;
         EstadoInput.checked = Estado; // Establecer el valor de Estado según el parámetro pasado
+
+        //Registra datos
     } else {
         modalTitle.textContent = 'Registrar Datos';
         recordId.value = '';
@@ -35,6 +38,8 @@ function detellePersonas(accion, Id = null, userId = '', idArea = '', Identifica
     myModal.show();
 }
 
+
+//Visualizacion de datos
 function mostrarDetalle(Id, UserName, AreaName, userId,idArea, Identificacion, Estado) {
     const modalBody = document.querySelector('#dialog1 .modal-body');
     modalBody.innerHTML = `
@@ -42,16 +47,19 @@ function mostrarDetalle(Id, UserName, AreaName, userId,idArea, Identificacion, E
         <p><strong>Nombre:</strong> ${UserName}</p>
         <p><strong>Área:</strong> ${AreaName}</p>
         <p><strong>Identificación:</strong> ${Identificacion}</p>
+        <p><strong>NIT Emprea:</strong> ${userId}</p>
+        <p><strong>Empresa:</strong> ${idArea}</p>
         <p><strong>Estado:</strong> ${Estado == 'True' ? 'Activo' : 'Inactivo'}
     `;
     $('#dialog1').modal('show');
 }
 
 
-function EliminarArea(Id, Nombre) {
+//Elimina regsitros de la tabla
+function EliminarPersona(Id, Nombre) {
     if (confirm('¿Estás seguro de que deseas eliminar el área ' + Nombre + '?')) {
         $.ajax({
-            url: "/Personas/eliminararea",
+            url: "/Personas/EliminarPersona",
             type: 'DELETE',
             data: { deleteid: Id },
             success: function (usuario) {
@@ -70,9 +78,10 @@ function EliminarArea(Id, Nombre) {
     }
 }
 
+//Trae las listas de las areas
 function ListaArea() {
     $.ajax({
-        url: "/Personas/List",
+        url: "/Personas/ListaArea",
         type: "GET",
         success: function (data) {
             const select = $('#idArea');
@@ -91,6 +100,8 @@ function ListaArea() {
         }
     });
 }
+
+//Trae el listados de las personas
 function ListaPersonas() {
     $.ajax({
         url: "/Personas/ListaPersonas",

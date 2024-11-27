@@ -23,9 +23,10 @@ function detelleEnsamble(accion, Id = null, IdElementType = '', IdMarca = '', Nu
         IdMarcaInput.value = IdMarca;
         $("#IdMarca").trigger("change"); 
         NumeroSerialInput.value = NumeroSerial;
-        EstadoInput.checked = Estado === 'true';
+        EstadoInput.checked = Estado === 'True';
+        //EstadoInput.checked = Estado === true;
         DescripcionInput.value = Descripcion;
-        RentingInput.checked = Renting === 'true'; // Aseguramos que el valor es booleano
+        RentingInput.checked = Renting === 'True'; // Aseguramos que el valor es booleano
 
     } else {
 
@@ -47,12 +48,12 @@ function detelleEnsamble(accion, Id = null, IdElementType = '', IdMarca = '', Nu
 }
 
 
-function mostrarDetalle(Id, IdElementType, IdMarca, NumeroSerial, Estado, Descripcion, Renting) {
+function mostrarDetalle(Id, TipoElemento, NombreMarca, NumeroSerial, Estado, Descripcion, Renting) {
     const modalBody = document.querySelector('#dialog1 .modal-body');
     modalBody.innerHTML = `
         <p><strong>Id:</strong> ${Id}</p>
-        <p><strong>Tio de elemento:</strong> ${IdElementType}</p>
-        <p><strong>Marca:</strong> ${IdMarca}</p>
+        <p><strong>Tipo de elemento:</strong> ${TipoElemento}</p>
+        <p><strong>Marca:</strong> ${NombreMarca}</p>
         <p><strong>Número Serial:</strong> ${NumeroSerial}</p>
         <p><p><strong>Estado:</strong> ${Estado == 'True' ? 'Activo' : 'Inactivo'}
         <p><strong>Descripción:</strong> ${Descripcion}</p>
@@ -61,10 +62,10 @@ function mostrarDetalle(Id, IdElementType, IdMarca, NumeroSerial, Estado, Descri
     $('#dialog1').modal('show');
 }
 
-function EliminarArea(Id, IdElementType) {
+function EliminarEnsamble(Id, IdElementType) {
     if (confirm('¿Estás seguro de que deseas eliminar el área ' + IdElementType + '?')) {
         $.ajax({
-            url: "/Ensamble/Eliminararea",
+            url: "/Ensamble/EliminarEnsamble",
             type: 'DELETE',
             data: { deleteid: Id },
             success: function (usuario) {

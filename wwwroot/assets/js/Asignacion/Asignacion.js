@@ -42,10 +42,10 @@ function mostrarDetalle(Id, IdPersona, IdEnsamble) {
     $('#dialog1').modal('show');
 }
 
-function EliminarArea(Id, IdElementType) {
+function EliminarAsignacion(Id, IdElementType) {
     if (confirm('¿Estás seguro de que deseas eliminar el área ' + IdElementType + '?')) {
         $.ajax({
-            url: "/Asignacion/Eliminararea",
+            url: "/Asignacion/EliminarAsignacion",
             type: 'DELETE',
             data: { deleteid: Id },
             success: function (usuario) {

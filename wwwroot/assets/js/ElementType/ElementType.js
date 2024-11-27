@@ -37,10 +37,10 @@ function mostrarDetalle(Id, Nombre, IdElementType) {
     $('#dialog1').modal('show');
 }
 
-function EliminarArea(Id, nombre) {
+function EliminarElemento(Id, nombre) {
     if (confirm('¿Estás seguro de que deseas eliminar el área ' + nombre + '?')) {
         $.ajax({
-            url: "/ElementType/eliminararea",
+            url: "/ElementType/EliminarElemento",
             type: 'DELETE',
             data: { deleteid: Id },
             success: function (usuario) {
