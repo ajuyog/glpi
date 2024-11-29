@@ -4,7 +4,7 @@
     ListaEmpresa();
 });
 
-function detellePersonas(accion, Id = null, userId = '', idArea = '', Identificacion = '', Estado = '', IdEmpresa='') {
+function detellePersonas(accion, Id = null, userId = '', idArea = '', Identificacion = '', Estado = '', IdEmpresa = '') {
     const modalTitle = document.getElementById('titelid-modal');
     const recordId = document.getElementById('recordId');
     const userIdInput = document.getElementById('userId');
@@ -13,7 +13,7 @@ function detellePersonas(accion, Id = null, userId = '', idArea = '', Identifica
     const EstadoInput = document.getElementById('estado');
     const IdEmpresaInput = document.getElementById('IdEmpresa');
 
-    //Actualiza datos 
+    // Actualiza datos 
     if (accion === 'actualizar') {
         modalTitle.textContent = 'Actualizar Datos';
         recordId.value = Id;
@@ -23,8 +23,8 @@ function detellePersonas(accion, Id = null, userId = '', idArea = '', Identifica
         $("#idArea").trigger("change");
         identificacionInput.value = Identificacion;
         EstadoInput.checked = Estado; // Establecer el valor de Estado según el parámetro pasado
-        IdEmpresaInput.checked = IdEmpresa;
-        //Registra datos
+        IdEmpresaInput.value = IdEmpresa; // Asigna el valor de IdEmpresa al campo (no checked)
+
     } else {
         modalTitle.textContent = 'Registrar Datos';
         recordId.value = '';
@@ -34,7 +34,8 @@ function detellePersonas(accion, Id = null, userId = '', idArea = '', Identifica
         $("#idArea").trigger("change");
         identificacionInput.value = '';
         EstadoInput.checked = false; // Dejar como false por defecto en nuevo registro
-        IdEmpresaInput.checked = ''; // Dejar como false por defecto en nuevo registro
+        IdEmpresaInput.value = ''; // Dejar en blanco o el valor por defecto para nuevo registro
+        $("#IdEmpresa").trigger("change");
     }
 
     var myModal = new bootstrap.Modal(document.getElementById('detellePersonas-modal'));
@@ -42,8 +43,9 @@ function detellePersonas(accion, Id = null, userId = '', idArea = '', Identifica
 }
 
 
+
 //Visualizacion de datos
-function mostrarDetalle(Id, UserName, AreaName, userId, idArea, Identificacion, Estado, IdEmpresa) {
+function mostrarDetalle(Id, UserName, AreaName, userId, idArea, Identificacion, Estado, NombreEmpresa, IdEmpresa) {
     const modalBody = document.querySelector('#dialog1 .modal-body');
     modalBody.innerHTML = `
         <p><strong>Id:</strong> ${Id}</p>
@@ -51,7 +53,7 @@ function mostrarDetalle(Id, UserName, AreaName, userId, idArea, Identificacion, 
         <p><strong>Área:</strong> ${AreaName}</p>
         <p><strong>Identificación:</strong> ${Identificacion}</p>
         <p><strong>Estado:</strong> ${Estado == 'True' ? 'Activo' : 'Inactivo'}
-        <p><strong>Empresa:</strong> ${IdEmpresa}
+        <p><strong>Empresa:</strong> ${NombreEmpresa}
     `;
     $('#dialog1').modal('show');
 }
@@ -78,8 +80,7 @@ function EliminarPersona(Id, Nombre) {
             }
         });
     }
-}
-
+}                                                                                        
 //Trae las listas de las areas
 function ListaArea() {
     $.ajax({
@@ -135,7 +136,7 @@ function ListaPersonas() {
             data.forEach(function (item) {
                 const option = $('<option></option>')
                     .val(item.id)
-                    .text(`${item.nitEmpresa}- ${item.nombre}`);
+                    .text(`${item.nombre}`);
                 select.append(option);
             });
         },

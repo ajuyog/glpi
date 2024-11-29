@@ -2,11 +2,11 @@
 {
     public class CentroDeCostoDTO
     {
-        public string descripcion { get; set; }
-        public int vlrNeto { get; set; }
-        public int idEnsamble { get; set; }
-        public string numeroSerial { get; set; }
-        public string nombreArea { get; set; }
+        public int IdEnsamble { get; set; }
+        public string NumeroSerial { get; set; }
+        public string Descripcion { get; set; }
+        public int VlrNeto { get; set; }
+        public string NombreArea { get; set; }
 
     }
 }

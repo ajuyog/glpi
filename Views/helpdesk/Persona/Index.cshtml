@@ -60,9 +60,10 @@
                                     <i class="fa fa-times-circle" aria-hidden="true" style="color:#f20b0b; font-size: 16px;"></i>
                                 }
                             </td>
-                            <td>@i.IdEmpresa</td>
+@*                             <td>@i.IdEmpresa</td> *@
+                            <td>@i.NombreEmpresa</td>
                             <td class="text-center">
-                                <button class="btn btn-primary" onclick="mostrarDetalle('@i.Id','@i.UserName','@i.AreaName', '@i.Identificacion', '@i.Estado', '@i.IdEmpresa')" type="button">
+                                <button class="btn btn-primary" onclick="mostrarDetalle('@i.Id','@i.UserName','@i.AreaName', '@i.Identificacion', '@i.Estado','@i.IdEmpresa')" type="button">
                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                 </button>
 
@@ -136,7 +137,7 @@
                                             <i class="fa fa-times-circle-o fa-2x" style="color: #e60f0f;"></i>
                                         }
                                     </td>
-                                    <td>@i.IdEmpresa</td>
+                                    <td>@i.NombreEmpresa</td>
                                 </tr>
                             }
                         </tbody>
@@ -173,7 +174,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="identificacion" class="form-label">Ingresa una identificación</label>
-                            <input class="form-control" type="text" id="identificacion" name="identificacion" required />
+                            <input class="form-control" type="text" id="identificacion" name="identificacion" />
                         </div>
                         <div class="mb-3">
                             <label for="estado" class="form-label">Estado </label>

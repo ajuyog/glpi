@@ -81,6 +81,7 @@ namespace noa.Controllers.helpdesk
                 }
                 else
                 {
+
                     // Crear nuevo registro
                     var request = await httpClient.PostAsJsonAsync($"{_configuration["Inven:URL"]}/Empresa", elementDTO);
                     if (request.IsSuccessStatusCode)
@@ -113,3 +114,4 @@ namespace noa.Controllers.helpdesk
         }
     }
 }
+

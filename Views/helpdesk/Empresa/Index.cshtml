@@ -41,8 +41,8 @@
                     {
                         <tr>
                             <td>@i.Id</td>
-                            <td>@i.NitEmpresa</td>
                             <td>@i.Nombre</td>
+                            <td>@i.NitEmpresa</td>
                             <td class="text-center">
                                 <button class="btn btn-primary" onclick="mostrarDetalle('@i.Id','@i.Nombre','@i.NitEmpresa')" type="button">
                                     <i class="fa fa-eye" aria-hidden="true"></i>
@@ -96,8 +96,8 @@
                             {
                                 <tr>
                                     <td>@i.Id</td>
-                                    <td>@i.NitEmpresa</td>
                                     <td>@i.Nombre</td> 
+                                    <td>@i.NitEmpresa</td>
                                 </tr>
                             }
                         </tbody>
@@ -122,11 +122,11 @@
                         <input type="hidden" id="recordId" name="id" value="" />
                         <div class="mb-3">
                             <label for="Nombre" class="form-label">Ingresa el  nombre de la empresa</label>
-                            <input class="form-control" type="text" id="Nombre" name="Nombre" required />
+                            <input class="form-control" type="text" id="Nombre" name="Nombre"  />
                         </div>
                         <div class="mb-3">
                             <label for="NitEmpresa" class="form-label">Ingresa el  NIT de la empresa</label>
-                            <input class="form-control" type="text" id="NitEmpresa" name="EliminarEmpresa" required />
+                            <input class="form-control" type="text" id="NitEmpresa" name="NitEmpresa"  />
                         </div>
                         <div class="d-flex flex-row justify-content-end mt-2">
                             <button class="btn btn-danger ms-2" id="cerrar" type="button" data-bs-dismiss="modal">Cerrar</button>
