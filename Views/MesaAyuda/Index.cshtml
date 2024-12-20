@@ -1,0 +1,131 @@
+﻿<body>
+    <div class="container">
+        <div class="header">
+            <h1>Factura centro de costos</h1>
+            <p class="subtitle">Factura n.° 01234</p>
+            <p class="subtitle">2 de mayo de 2025</p>
+        </div>
+        <div class="row">
+            <!-- Área TI -->
+            <div class="col-12">
+                <div class="card custom-card">
+                    <div class="card-body" style="padding: 0rem;">
+                        <div class="text-center mt-4">
+                            <h1>Tecnología</h1>
+                        </div>
+                        <div class="table-responsive">
+                            <div class="card-body">
+                                <table class="table text-nowrap text-md-nowrap table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo de elemento</th>
+                                            <th>Número de serial</th>
+                                            <th>Valor unitario</th>
+                                            <th>Valor total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                           <td></td>
+                                           <td></td>
+                                           <td></td>
+                                           <td></td>
+                                       </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Área Comercial -->
+            <div class="col-12">
+                <div class="card custom-card">
+                    <div class="card-body" style="padding: 0rem;">
+                        <div class="text-center mt-4">
+                            <h1>Comercial</h1>
+                        </div>
+                        <div class="table-responsive">
+                            <div class="card-body">
+                                <table class="table text-nowrap text-md-nowrap table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo de elemento</th>
+                                            <th>Número de serial</th>
+                                            <th>Valor unitario</th>
+                                            <th>Valor total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>IdEnsamble</td>
+                                            <td>NumeroSerial</td>
+                                            <td>VlrNeto</td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="totals">
+            <p><strong>Subtotal:</strong> $14760</p>
+            <p><strong>Impuestos (0 %):</strong> $0</p>
+            <p><strong>Total:</strong> $14760</p>
+        </div>
+    </div>
+</body>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        background: #fff;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    .header h1 {
+        margin: 0;
+        font-size: 24px;
+    }
+
+    .header .subtitle {
+        font-size: 18px;
+        color: #777;
+    }
+
+    .table th, .table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+
+    .table th {
+        background-color: #f2f2f2;
+    }
+
+    .totals p {
+        margin: 5px 0;
+    }
+
+    .modal-xl {
+        max-width: 70vw;
+    }
+
+    .modal-body iframe {
+        height: 75vh;
+        border: none;
+    }
+</style>

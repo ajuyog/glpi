@@ -12,7 +12,6 @@ function detelletipoelemet(accion, id = null, Nombre = '', IdElementType = '') {
         recordId.value = id;
         NombreInput.value = Nombre;
         IdElementTypeInput.value = IdElementType;
-        $("#IdElementType").trigger("change");
     } else {
         modalTitle.textContent = 'Registrar Datos';
         recordId.value = '';  

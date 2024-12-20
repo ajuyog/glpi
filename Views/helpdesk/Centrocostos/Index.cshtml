@@ -1,4 +1,5 @@
 ﻿@model List<CentroDeCostoDTO>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
 <div class="d-flex justify-content-between align-items-center">
     <!-- Título -->
     <div>
@@ -7,188 +8,94 @@
             <li class="breadcrumb-item text-primary">Centro de costos</li>
         </ol>
     </div>
-    <!-- Boton generar pdf -->
-    <button class="btn btn-primary btn-red" id="generate-pdf2" type="button">
-        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+    <button class="btn btn-secondary" id="preview-pdf-btn" type="button">
+        Previsualizar PDF
     </button>
 </div>
-@*     <button id="generate-pdf" class="btn btn-primary">PDF</button> *@
-<div id="content-to-pdf">
-    <div class="row">
-        <!-- Área TI -->
-        <div class="col-12">
-            <div class="card custom-card">
-                <div class="card-body" style="padding: 0rem;">
-                    <div class="text-center mt-4 " >
-                        <h1>Tecnologia</h1>
-                    </div>
-                    <div class="table-responsive">
-                        <div class="card-body">
-                            <table class="table text-nowrap text-md-nowrap table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Tipo de elemento</th>
-                                        <th>Número de serial</th>
-                                        <th>Valor unitario</th>
-                                        <th>Valor total</th>
-                                    </tr>
-                                </thead>
+@* <!-- Tablas visibles para los usuarios -->
+<div id="visible-tables">
+
+</div> *@
+<div class="row">
+    <!-- Área TI -->
+    <div class="col-12">
+        <div class="card custom-card">
+            <div class="card-body" style="padding: 0rem;">
+                <div class="text-center mt-4">
+                    <h1>Tecnología</h1>
+                </div>
+                <div class="table-responsive">
+                    <div class="card-body">
+                        <table class="table text-nowrap text-md-nowrap table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Tipo de elemento</th>
+                                    <th>Número de serial</th>
+                                    <th>Valor unitario</th>
+                                    <th>Valor total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 @foreach (var i in Model)
                                 {
-                                    <tbody>
-                                        <tr>
-                                            <td>@i.IdEnsamble</td>
-                                            <td>@i.NumeroSerial</td>
-                                            <td>@i.VlrNeto</td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
+                                    <tr>
+                                        <td>@i.IdEnsamble</td>
+                                        <td>@i.NumeroSerial</td>
+                                        <td>@i.VlrNeto</td>
+                                        <td></td>
+                                    </tr>
                                 }
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Área Comercial -->
-        <div class="col-12">
-            <div class="card custom-card">
-                <div class="card-body" style="padding: 0rem;">
-                    <div class="text-center mt-4">
-                        <h1>Comercial</h1>
-                    </div>
-                    <div class="table-responsive">
-                        <div class="card-body">
-                            <table class="table text-nowrap text-md-nowrap table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Tipo de elemento</th>
-                                        <th>Número de serial</th>
-                                        <th>Valor unitario</th>
-                                        <th>Valor total</th>
-                                    </tr>
-                                </thead>
-                                @* @foreach (var i in Model)
-                                {
-                                    <tbody>
-                                        <tr>
-                                            <td>@i.IdEnsamble</td>
-                                            <td>@i.NumeroSerial</td>
-                                            <td>@i.</td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                } *@
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <!-- Área Jurídica -->
-        <div class="col-12">
-            <div class="card custom-card">
-                <div class="card-body" style="padding: 0rem;">
-                    <div class="text-center mt-4">
-                        <h1>Jurídica</h1>
-                    </div>
-                    <div class="table-responsive">
-                        <div class="card-body">
-                            <table class="table text-nowrap text-md-nowrap table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Tipo de elemento</th>
-                                        <th>Número de serial</th>
-                                        <th>Valor unitario</th>
-                                        <th>Valor total</th>
-                                    </tr>
-                                </thead>
+    <!-- Área Comercial -->
+    <div class="col-12">
+        <div class="card custom-card">
+            <div class="card-body" style="padding: 0rem;">
+                <div class="text-center mt-4">
+                    <h1>Comercial</h1>
+                </div>
+                <div class="table-responsive">
+                    <div class="card-body">
+                        <table class="table text-nowrap text-md-nowrap table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Tipo de elemento</th>
+                                    <th>Número de serial</th>
+                                    <th>Valor unitario</th>
+                                    <th>Valor total</th>
+                                </tr>
+                            </thead>
+                            @foreach (var i in Model)
+                            {
                                 <tbody>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>@i.IdEnsamble</td>
+                                        <td>@i.NumeroSerial</td>
+                                        <td>@i.VlrNeto</td>
+                                        <td>@i.</td>
                                     </tr>
                                 </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Área Contable -->
-        <div class="col-12">
-            <div class="card custom-card">
-                <div class="card-body" style="padding: 0rem;">
-                    <div class="text-center mt-4">
-                        <h1>Contable</h1>
-                    </div>
-                    <div class="table-responsive">
-                        <div class="card-body">
-                            <table class="table text-nowrap text-md-nowrap table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Tipo de elemento</th>
-                                        <th>Número de serial</th>
-                                        <th>Valor unitario</th>
-                                        <th>Valor total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <!-- Gerencia -->
-        <div class="col-12">
-            <div class="card custom-card" style="padding: 0rem;">
-                <div class="text-center mt-4">
-                    <h1>Gerencia</h1>
-                </div>
-                <div class="table-responsive">
-                    <div class="card-body">
-                        <table class="table text-nowrap text-md-nowrap table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Tipo de elemento</th>
-                                    <th>Número de serial</th>
-                                    <th>Valor unitario</th>
-                                    <th>Valor total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
+                            }
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Talento Humano -->
-        <div class="col-12">
-            <div class="card custom-card">
+    </div>
+</div>
+
+<div class="row">
+    <!-- Área Jurídica -->
+    <div class="col-12">
+        <div class="card custom-card">
+            <div class="card-body" style="padding: 0rem;">
                 <div class="text-center mt-4">
-                    <h1>Talento Humano</h1>
+                    <h1>Jurídica</h1>
                 </div>
                 <div class="table-responsive">
                     <div class="card-body">
@@ -215,74 +122,12 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <!-- Calidad -->
-        <div class="col-12">
-            <div class="card custom-card">
+    <!-- Área Contable -->
+    <div class="col-12">
+        <div class="card custom-card">
+            <div class="card-body" style="padding: 0rem;">
                 <div class="text-center mt-4">
-                    <h1>Calidad</h1>
-                </div>
-                <div class="table-responsive">
-                    <div class="card-body">
-                        <table class="table text-nowrap text-md-nowrap table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Tipo de elemento</th>
-                                    <th>Número de serial</th>
-                                    <th>Valor unitario</th>
-                                    <th>Valor total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portafolio -->
-        <div class="col-12">
-            <div class="card custom-card">
-                <div class="text-center mt-4">
-                    <h1>Portafolio</h1>
-                </div>
-                <div class="table-responsive">
-                    <div class="card-body">
-                        <table class="table text-nowrap text-md-nowrap table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Tipo de elemento</th>
-                                    <th>Número de serial</th>
-                                    <th>Valor unitario</th>
-                                    <th>Valor total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <!-- Operaciones -->
-        <div class="col-12">
-            <div class="card custom-card">
-                <div class="text-center">
-                    <h1>Operaciones</h1>
+                    <h1>Contable</h1>
                 </div>
                 <div class="table-responsive">
                     <div class="card-body">
@@ -310,79 +155,299 @@
         </div>
     </div>
 </div>
-@* <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script> *@
+<div class="row">
+    <!-- Gerencia -->
+    <div class="col-12">
+        <div class="card custom-card" style="padding: 0rem;">
+            <div class="text-center mt-4">
+                <h1>Gerencia</h1>
+            </div>
+            <div class="table-responsive">
+                <div class="card-body">
+                    <table class="table text-nowrap text-md-nowrap table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Tipo de elemento</th>
+                                <th>Número de serial</th>
+                                <th>Valor unitario</th>
+                                <th>Valor total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Talento Humano -->
+    <div class="col-12">
+        <div class="card custom-card">
+            <div class="text-center mt-4">
+                <h1>Talento Humano</h1>
+            </div>
+            <div class="table-responsive">
+                <div class="card-body">
+                    <table class="table text-nowrap text-md-nowrap table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Tipo de elemento</th>
+                                <th>Número de serial</th>
+                                <th>Valor unitario</th>
+                                <th>Valor total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <!-- Calidad -->
+    <div class="col-12">
+        <div class="card custom-card">
+            <div class="text-center mt-4">
+                <h1>Calidad</h1>
+            </div>
+            <div class="table-responsive">
+                <div class="card-body">
+                    <table class="table text-nowrap text-md-nowrap table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Tipo de elemento</th>
+                                <th>Número de serial</th>
+                                <th>Valor unitario</th>
+                                <th>Valor total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Portafolio -->
+    <div class="col-12">
+        <div class="card custom-card">
+            <div class="text-center mt-4">
+                <h1>Portafolio</h1>
+            </div>
+            <div class="table-responsive">
+                <div class="card-body">
+                    <table class="table text-nowrap text-md-nowrap table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Tipo de elemento</th>
+                                <th>Número de serial</th>
+                                <th>Valor unitario</th>
+                                <th>Valor total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <!-- Operaciones -->
+    <div class="col-12">
+        <div class="card custom-card">
+            <div class="text-center">
+                <h1>Operaciones</h1>
+            </div>
+            <div class="table-responsive">
+                <div class="card-body">
+                    <table class="table text-nowrap text-md-nowrap table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Tipo de elemento</th>
+                                <th>Número de serial</th>
+                                <th>Valor unitario</th>
+                                <th>Valor total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="d-flex flex-row-reverse">
+        <div class="col-3">
+            <div class="card custom-card">
+                <div class="card-body" style="padding: 0rem;">
+                    <div class="text-center">
+                        <h1>Resumen</h1>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table text-nowrap text-md-nowrap table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Indicador</th>
+                                    <th>Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Total elementos</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Promedio valor</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Diseño oculto pero usado en el PDF -->
+<div id="content-to-pdf" style="display: none;">
+    <div class="container">
+        <div class="header text-center">
+            <h1>Factura centro de costos</h1>
+            <p class="subtitle">Factura n.° 01234</p>
+            <p class="subtitle">2 de mayo de 2025</p>
+        </div>
+
+        <div class="row">
+            <!-- Área TI -->
+            <div class="col-12">
+                <div class="card custom-card">
+                    <div class="card-body">
+                        <div class="text-center mt-4">
+                            <h2>Tecnología</h2>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table text-nowrap text-md-nowrap table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Tipo de elemento</th>
+                                        <th>Número de serial</th>
+                                        <th>Valor unitario</th>
+                                        <th>Valor total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Área Comercial -->
+            <div class="col-12">
+                <div class="card custom-card">
+                    <div class="card-body">
+                        <div class="text-center mt-4">
+                            <h2>Comercial</h2>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table text-nowrap text-md-nowrap table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Tipo de elemento</th>
+                                        <th>Número de serial</th>
+                                        <th>Valor unitario</th>
+                                        <th>Valor total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="totals text-end">
+            <p><strong>Subtotal:</strong> $14760</p>
+            <p><strong>Impuestos (0 %):</strong> $0</p>
+            <p><strong>Total:</strong> $14760</p>
+        </div>
+    </div>
+</div>
+<!-- Modal para previsualización del PDF -->
+<div id="pdf-preview-modal" class="modal fade" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Previsualización del PDF</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <iframe id="pdf-preview-iframe" style="width: 100%; height: 85vh; border: none;"></iframe>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="generate-pdf2" type="button">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Generar PDF
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section scripts {
 
     <script src="/assets/js/helpdesk/Centrocostos/Centrocostos.js" asp-append-version="true"></script>
-
-    @* /* JS Selector Con Buscardor*/ *@
-    <!-- Bootstrap-Date Range Picker js-->
-    <script src="~/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
-
-    <!-- jQuery UI Date Picker js -->
-    <script src="~/assets/plugins/date-picker/jquery-ui.js"></script>
-
-    <!-- bootstrap-datepicker js (Date picker Style-01) -->
-    <script src="~/assets/plugins/bootstrap-datepicker/js/datepicker.js"></script>
-
-    <!-- Amaze UI Date Picker js-->
-    <script src="~/assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js"></script>
-
-    <!-- Simple Date Time Picker js-->
-    <script src="~/assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js"></script>
-
-    <!-- Internal Treeview js -->
-    <script src="~/assets/plugins/treeview/treeview.js"></script>
-
-    <!--Internal Fileuploads js-->
-    <script src="~/assets/plugins/fileuploads/js/fileupload.js"></script>
-    <script src="~/assets/plugins/fileuploads/js/file-upload.js"></script>
-
-    <!-- INTERNAL Notifications js -->
-    <script src="~/assets/plugins/notify/js/notifIt.js"></script>
-
-    <!-- INTERNAL SELECT2 JS -->
-    <script src="~/assets/plugins/select2/select2.full.min.js"></script>
-    @* /* Fin JS Selector Con Buscardor  */ *@
-
-    @* /* JS Tabla Response */ *@
-    <!-- DATA TABLE JS-->
-@*     <script src="~/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-    <script src="~/assets/plugins/datatable/js/dataTables.buttons.min.js"></script>
-    <script src="~/assets/plugins/datatable/dataTables.responsive.min.js"></script>
-    <script src="~/assets/plugins/datatable/js/buttons.bootstrap5.min.js"></script>
-    <script src="~/assets/plugins/datatable/js/buttons.colVis.min.js"></script> *@
-    @* <script src="~/assets/js/table-data.js"></script> *@
-    @* /* Fin JS Tabla Response  */ *@
-
-    @* /* JS Selector Con Buscardor*/ *@
-    <!-- FORM ELEMENTADVANCED JS -->
-    @* <script src="~/assets/js/formelementadvnced.js" asp-append-version="true"></script> *@
-    @* /* Fin JS Selector Con Buscardor  */ *@
-
-    @* /* JS Temporizador */ *@
-    <!-- TIME COUNTER JS-->
-    <script src="~/assets/plugins/counters/jquery.missofis-countdown.js"></script>
-    @* /* FIN JS Temporizador */ *@
-
-
-    <!-- Habilitar en caso de que se utiliza PDF  -->
-    <!-- INTERNAL SELECT2 JS -->
-    @* <script src="~/assets/plugins/select2/select2.full.min.js"></script> *@
-
-    <!-- DATA TABLE JS-->
-    <script src="~/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-    <script src="~/assets/plugins/datatable/js/dataTables.bootstrap5.js"></script>
-    <script src="~/assets/plugins/datatable/js/dataTables.buttons.min.js"></script>
-    <script src="~/assets/plugins/datatable/js/buttons.bootstrap5.min.js"></script>
-    <script src="~/assets/plugins/datatable/js/jszip.min.js"></script>
-    <script src="~/assets/plugins/datatable/pdfmake/pdfmake.min.js"></script>
-    <script src="~/assets/plugins/datatable/pdfmake/vfs_fonts.js"></script>
-    <script src="~/assets/plugins/datatable/js/buttons.html5.min.js"></script>
-    <script src="~/assets/plugins/datatable/js/buttons.print.min.js"></script>
-    <script src="~/assets/plugins/datatable/js/buttons.colVis.min.js"></script>
-    <script src="~/assets/plugins/datatable/dataTables.responsive.min.js"></script>
-    <script src="~/assets/plugins/datatable/responsive.bootstrap5.min.js"></script>
-    <script src="~/assets/js/table-data.js"></script>
-
 }
+<link rel="stylesheet" href="~/assets/css/estilo.css">
+
