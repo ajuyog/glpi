@@ -14,8 +14,7 @@ namespace noa.Controllers.helpdesk
         public IActionResult Index(string buscaid)
         {
             var model = string.IsNullOrEmpty(buscaid) ? ListaDTO().Result : BuscaId(buscaid).Result;
-            return View("~/Views/helpdesk" +
-                "/Asignacion/Index.cshtml", model);
+            return View("~/Views/helpdesk/Asignacion/Index.cshtml", model);
         }
 
         public async Task<List<AsignacionDTO>> ListaDTO()

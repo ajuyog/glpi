@@ -8,7 +8,7 @@
             <li class="breadcrumb-item text-primary">Centro de costos</li>
         </ol>
     </div>
-    <button class="btn btn-secondary" id="preview-pdf-btn" type="button">
+    <button class="btn btn-primary" id="preview-pdf-btn" type="button">
         Previsualizar PDF
     </button>
 </div>
@@ -353,7 +353,6 @@
             <p class="subtitle">Factura n.° 01234</p>
             <p class="subtitle">2 de mayo de 2025</p>
         </div>
-
         <div class="row">
             <!-- Área TI -->
             <div class="col-12">
@@ -432,14 +431,12 @@
             <div class="modal-header">
                 <h5 class="modal-title">Previsualización del PDF</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button class="btn btn-primary" id="generate-pdf2" type="button"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Generar PDF</button>
             </div>
             <div class="modal-body">
                 <iframe id="pdf-preview-iframe" style="width: 100%; height: 85vh; border: none;"></iframe>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" id="generate-pdf2" type="button">
-                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Generar PDF
-                </button>
             </div>
         </div>
     </div>

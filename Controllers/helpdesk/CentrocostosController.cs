@@ -12,10 +12,9 @@ namespace noa.Controllers.helpdesk
             _configuration = configuration;
         }
 
-        // Acción para manejar la vista principal
-        public async Task<IActionResult> Index(string buscaid)
+        public async Task<IActionResult> Index()
         {
-            var model = string.IsNullOrEmpty(buscaid) ? await ListaDTO() : await BuscaId(buscaid);
+            var model = await ListaDTO();
             return View("~/Views/helpdesk/Centrocostos/Index.cshtml", model);
         }
 
@@ -29,21 +28,6 @@ namespace noa.Controllers.helpdesk
             {
                 var jsonResponse = await response.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<List<CentroDeCostoDTO>>(jsonResponse);
-            }
-            else
-            {
-                return [];
-            }
-        }
-        public async Task<List<CentroDeCostoDTO>> BuscaId(string buscaid)
-        {
-            var client = new HttpClient();
-            var request = await client.GetAsync($"{_configuration["Inven:URL"]}/CentroDeCosto/{buscaid}");
-            if (request.IsSuccessStatusCode)
-            {
-                var jsonResponse = await request.Content.ReadAsStringAsync();
-                var dto = JsonConvert.DeserializeObject<CentroDeCostoDTO>(jsonResponse);
-                return [dto];
             }
             else
             {

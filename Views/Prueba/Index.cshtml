@@ -1,0 +1,395 @@
+﻿                            
+							<!-- PAGE-HEADER -->
+							<div class="page-header">
+								<div>
+									<h1 class="page-title">Inbox</h1>
+								</div>
+								<div class="ms-auto pageheader-btn">
+									<ol class="breadcrumb">
+										<li class="breadcrumb-item">Apps</li>
+										<li class="breadcrumb-item"><a href="javascript:void(0);">E-Mail</a></li>
+										<li class="breadcrumb-item active" aria-current="page">Inbox</li>
+									</ol>
+								</div>
+							</div>
+							<!-- PAGE-HEADER END -->
+
+							<!-- Row -->
+							<div class="row">
+								<div class="col-md-12 col-lg-4 col-xl-3">
+									<div class="card">
+										<div class="card-header border-bottom">
+											<a asp-controller="ComposeMail" asp-action="Index" class="btn btn-block btn-outline-primary py-2">Compose</a>
+										</div>
+										<div class="card-body">
+											<ul class="nav1 nav-column flex-column br-7">
+												<li class="nav-item1 mt-0">
+													<a class="nav-link thumb active" href="#">
+														Todos <i class="mdi mdi-chevron-right ms-2" aria-hidden="true"></i>
+													</a>
+												</li>
+												<li class="nav-item1">
+													<a class="nav-link thumb" href="#">
+														En fila <i class="mdi mdi-chevron-right ms-2" aria-hidden="true"></i>
+													</a>
+												</li>
+												<li class="nav-item1">
+													<a class="nav-link thumb" href="#">
+														En proceso <i class="mdi mdi-chevron-right ms-2" aria-hidden="true"></i>
+													</a>
+												</li>
+												<li class="nav-item1">
+													<a class="nav-link thumb" href="#">
+														Finalizado <i class="mdi mdi-chevron-right ms-2" aria-hidden="true"></i>
+													</a>
+												</li>
+												<li class="nav-item1">
+													<a class="nav-link thumb" href="#">
+														Cancelado <i class="mdi mdi-chevron-right ms-2" aria-hidden="true"></i>
+													</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12 col-lg-8 col-xl-9">
+									<div class="card">
+										<div class="card-body p-6">
+											<div class="inbox-body">
+												<div class="mail-option">
+													<div class="chk-all">
+														<div class="btn-group">
+															<a data-bs-toggle="dropdown" href="#" class="btn mini all" aria-expanded="false">
+																All
+																<i class="fa fa-angle-down "></i>
+															</a>
+															<ul class="dropdown-menu">
+																<li><a href="#"> None</a></li>
+																<li><a href="#"> Read</a></li>
+																<li><a href="#"> Unread</a></li>
+															</ul>
+														</div>
+													</div>
+													<div class="btn-group">
+														<a  href="#" class="btn mini tooltips">
+															<svg xmlns="http://www.w3.org/2000/svg" class="w-inner-icn" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path d="M20.5,16h-4c-0.276123,0-0.5,0.223877-0.5,0.5s0.223877,0.5,0.5,0.5h2.9760132c-1.6599121,2.4746704-4.44104,3.9971313-7.4585571,4C7.0420532,21.0048218,3.0048218,16.9754028,3,12c-0.0004272-0.4752197,0.0374756-0.9497681,0.1133423-1.4188843c0.0447388-0.2723999-0.1397705-0.52948-0.4121094-0.5742188c-0.2723999-0.0447998-0.52948,0.1397095-0.5742188,0.4121094C2.0422363,10.9417114,1.9997559,11.470459,2,12c0.0064697,5.5201416,4.4798584,9.9935303,10,10c3.1759033,0.0013428,6.1253662-1.5065308,8-3.9985962V20.5c0,0.0001831,0,0.0003662,0,0.0005493C20.0001831,20.7765503,20.223999,21.0001831,20.5,21c0.0001831,0,0.0003662,0,0.0006104,0C20.7765503,20.9998169,21.0001831,20.776001,21,20.5v-4c0-0.0001831,0-0.0003662,0-0.0006104C20.9998169,16.2234497,20.776001,15.9998169,20.5,16z M16.7373047,3.1964722C12.3201904,0.817749,6.9207764,2.1072388,4,6.0029297V3.5C4,3.223877,3.776123,3,3.5,3S3,3.223877,3,3.5v4c0,0.0001831,0,0.0003662,0,0.0006104C3.0001831,7.7765503,3.223999,8.0001831,3.5,8h4C7.776123,8,8,7.776123,8,7.5S7.776123,7,7.5,7H4.5239868c1.6599121-2.4746704,4.44104-3.9971313,7.4585571-4C16.9579468,2.9951782,20.9951782,7.0245972,21,12c0.0004272,0.4752808-0.0374146,0.9497681-0.1132202,1.4189453c-0.0001831,0.0007935-0.0003052,0.0015259-0.0004272,0.0023193c-0.0440063,0.2718506,0.140686,0.5278931,0.4125366,0.5718994C21.3259277,13.9978638,21.3533936,14.0001221,21.3808594,14c0.2445068-0.0003662,0.4527588-0.1776733,0.4921265-0.4190063C21.9577637,13.0582886,22.0002441,12.529541,22,12C21.9970703,8.3212891,19.9761963,4.9407349,16.7373047,3.1964722z"/></svg>
+														</a>
+													</div>
+													<div class="btn-group hidden-phone">
+														<a data-bs-toggle="dropdown" href="#" class="btn mini blue" aria-expanded="false">
+															More
+															<i class="fa fa-angle-down "></i>
+														</a>
+														<ul class="dropdown-menu">
+															<li><a href="#"><i class="fa fa-pencil me-2"></i> Mark as Read</a></li>
+															<li><a href="#"><i class="fa fa-ban me-2"></i> Spam</a></li>
+															<li><a href="#"><i class="fa fa-trash-o me-2"></i> Delete</a></li>
+														</ul>
+													</div>
+													<ul class="unstyled inbox-pagination">
+														<li><span>1-50 of 234</span></li>
+
+														<li>
+															<a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right"></i></a>
+														</li>
+													</ul>
+												</div>
+												<div class="table-responsive">
+													<table class="table table-inbox table-hover text-nowrap mb-0">
+														<tbody>
+															<tr>
+																<td class="inbox-small-cells">
+																	<label class="custom-control custom-checkbox mb-0">
+																		<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+																		<span class="custom-control-label"></span>
+																	</label>
+																</td>
+																<td class="inbox-small-cells"><i class="fa fa-star text-warning"></i></td>
+																<td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
+																<td class="view-message dont-show fw-semibold">Tim Reid, S P N</td>
+																<td class="view-message">Boost Your Website Traffic</td>
+																<td class="view-message text-end fw-semibold">April 01</td>
+															</tr>
+															<tr>
+																<td class="inbox-small-cells">
+																	<label class="custom-control custom-checkbox mb-0">
+																		<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+																		<span class="custom-control-label"></span>
+																	</label>
+																</td>
+																<td class="inbox-small-cells"><i class="fa fa-star"></i></td>
+																<td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
+																<td class="view-message dont-show fw-semibold">Freelancer.com </td>
+																<td class="view-message">Stop wasting your visitors </td>
+																<td class="view-message text-end fw-semibold">May 23</td>
+															</tr>
+															<tr class="unread">
+																<td class="inbox-small-cells">
+																	<label class="custom-control custom-checkbox mb-0">
+																		<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2" checked>
+																		<span class="custom-control-label"></span>
+																	</label>
+																</td>
+																<td class="inbox-small-cells"><i class="fa fa-star"></i></td>
+																<td class="inbox-small-cells"><i class="fa fa-bookmark text-danger"></i></td>
+																<td class="view-message  dont-show">PHPClass</td>
+																<td class="view-message ">Added a new class: Login Class Fast Site</td>
+																<td class="view-message  text-end">9:27 AM</td>
+															</tr>
+															<tr>
+																<td class="inbox-small-cells">
+																	<label class="custom-control custom-checkbox mb-0">
+																		<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+																		<span class="custom-control-label"></span>
+																	</label>
+																</td>
+																<td class="inbox-small-cells"><i class="fa fa-star"></i></td>
+																<td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
+																<td class="view-message dont-show fw-semibold">Facebook</td>
+																<td class="view-message view-message">Somebody requested a new password </td>
+																<td class="view-message text-end fw-semibold">June 13</td>
+															</tr>
+															<tr>
+																<td class="inbox-small-cells">
+																	<label class="custom-control custom-checkbox mb-0">
+																		<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+																		<span class="custom-control-label"></span>
+																	</label>
+																</td>
+																<td class="inbox-small-cells"><i class="fa fa-star"></i></td>
+																<td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
+																<td class="view-message dont-show fw-semibold">Skype</td>
+																<td class="view-message view-message">Password successfully changed</td>
+																<td class="view-message text-end fw-semibold">March 24</td>
+															</tr>
+															<tr>
+																<td class="inbox-small-cells">
+																	<label class="custom-control custom-checkbox mb-0">
+																		<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+																		<span class="custom-control-label"></span>
+																	</label>
+																</td>
+																<td class="inbox-small-cells"><i class="fa fa-star"></i></td>
+																<td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
+																<td class="view-message dont-show fw-semibold">Google+</td>
+																<td class="view-message">alireza, do you know</td>
+																<td class="view-message text-end fw-semibold">March 09</td>
+															</tr>
+															<tr>
+																<td class="inbox-small-cells">
+																	<label class="custom-control custom-checkbox mb-0">
+																		<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+																		<span class="custom-control-label"></span>
+																	</label>
+																</td>
+																<td class="inbox-small-cells"><i class="fa fa-star"></i></td>
+																<td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
+																<td class="view-message dont-show fw-semibold">WOW Slider </td>
+																<td class="view-message">New WOW Slider v7.8 - 67% off</td>
+																<td class="view-message text-end fw-semibold">March 14</td>
+															</tr>
+															<tr>
+																<td class="inbox-small-cells">
+																	<label class="custom-control custom-checkbox mb-0">
+																		<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+																		<span class="custom-control-label"></span>
+																	</label>
+																</td>
+																<td class="inbox-small-cells"><i class="fa fa-star text-warning"></i></td>
+																<td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
+																<td class="view-message dont-show fw-semibold">LinkedIn Pulse</td>
+																<td class="view-message">The One Sign Your Co-Worker Will Stab</td>
+																<td class="view-message text-end fw-semibold">Feb 19</td>
+															</tr>
+															<tr class="unread">
+																<td class="inbox-small-cells">
+																	<label class="custom-control custom-checkbox mb-0">
+																		<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+																		<span class="custom-control-label"></span>
+																	</label>
+																</td>
+																<td class="inbox-small-cells"><i class="fa fa-star"></i></td>
+																<td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
+																<td class="view-message dont-show fw-semibold">Google Webmaster </td>
+																<td class="view-message">Improve the search presence of WebSite</td>
+																<td class="view-message text-end fw-semibold">March 15</td>
+															</tr>
+															<tr>
+																<td class="inbox-small-cells">
+																	<label class="custom-control custom-checkbox mb-0">
+																		<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+																		<span class="custom-control-label"></span>
+																	</label>
+																</td>
+																<td class="inbox-small-cells"><i class="fa fa-star text-warning"></i></td>
+																<td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
+																<td class="view-message dont-show fw-semibold">JW Player</td>
+																<td class="view-message">Last Chance: Upgrade to Pro for </td>
+																<td class="view-message text-end fw-semibold">March 15</td>
+															</tr>
+															<tr>
+																<td class="inbox-small-cells">
+																	<label class="custom-control custom-checkbox mb-0">
+																		<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+																		<span class="custom-control-label"></span>
+																	</label>
+																</td>
+																<td class="inbox-small-cells"><i class="fa fa-star"></i></td>
+																<td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
+																<td class="view-message dont-show fw-semibold">Drupal Community</td>
+																<td class="view-message view-message">Welcome to the Drupal Community</td>
+																<td class="view-message text-end fw-semibold">March 04</td>
+															</tr>
+															<tr>
+																<td class="inbox-small-cells">
+																	<label class="custom-control custom-checkbox mb-0">
+																		<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+																		<span class="custom-control-label"></span>
+																	</label>
+																</td>
+																<td class="inbox-small-cells"><i class="fa fa-star"></i></td>
+																<td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
+																<td class="dont-show fw-semibold">Zoosk </td>
+																<td class="view-message">7 new singles we think you'll like</td>
+																<td class="view-message text-end fw-semibold">May 14</td>
+															</tr>
+															<tr class="unread">
+																<td class="inbox-small-cells">
+																	<label class="custom-control custom-checkbox mb-0">
+																		<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+																		<span class="custom-control-label"></span>
+																	</label>
+																</td>
+																<td class="inbox-small-cells"><i class="fa fa-star"></i></td>
+																<td class="inbox-small-cells"><i class="fa fa-bookmark text-danger"></i></td>
+																<td class="view-message dont-show fw-semibold">LinkedIn </td>
+																<td class="view-message">Alireza: Nokia Networks, System Group and </td>
+																<td class="view-message text-end fw-semibold">February 25</td>
+															</tr>
+															<tr>
+																<td class="inbox-small-cells">
+																	<label class="custom-control custom-checkbox mb-0">
+																		<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+																		<span class="custom-control-label"></span>
+																	</label>
+																</td>
+																<td class="inbox-small-cells"><i class="fa fa-star"></i></td>
+																<td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
+																<td class="dont-show fw-semibold">Facebook</td>
+																<td class="view-message view-message">Your account was recently logged into</td>
+																<td class="view-message text-end fw-semibold">March 14</td>
+															</tr>
+															<tr>
+																<td class="inbox-small-cells">
+																	<label class="custom-control custom-checkbox mb-0">
+																		<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+																		<span class="custom-control-label"></span>
+																	</label>
+																</td>
+																<td class="inbox-small-cells"><i class="fa fa-star"></i></td>
+																<td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
+																<td class="view-message dont-show fw-semibold">Twitter</td>
+																<td class="view-message">Your Twitter password has been changed</td>
+																<td class="view-message text-end fw-semibold">April 07</td>
+															</tr>
+															<tr>
+																<td class="inbox-small-cells">
+																	<label class="custom-control custom-checkbox mb-0">
+																		<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+																		<span class="custom-control-label"></span>
+																	</label>
+																</td>
+																<td class="inbox-small-cells"><i class="fa fa-star"></i></td>
+																<td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
+																<td class="view-message dont-show fw-semibold">InternetSeer</td>
+																<td class="view-message">Performance Report</td>
+																<td class="view-message text-end fw-semibold">July 14</td>
+															</tr>
+															<tr>
+																<td class="inbox-small-cells">
+																	<label class="custom-control custom-checkbox mb-0">
+																		<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+																		<span class="custom-control-label"></span>
+																	</label>
+																</td>
+																<td class="inbox-small-cells"><i class="fa fa-star"></i></td>
+																<td class="inbox-small-cells"><i class="fa fa-bookmark text-danger"></i></td>
+																<td class="view-message dont-show fw-semibold">Bertina </td>
+																<td class="view-message">IMPORTANT: Don't lose your domains!</td>
+																<td class="view-message text-end fw-semibold">June 16</td>
+															</tr>
+															<tr>
+																<td class="inbox-small-cells">
+																	<label class="custom-control custom-checkbox mb-0">
+																		<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+																		<span class="custom-control-label"></span>
+																	</label>
+																</td>
+																<td class="inbox-small-cells"><i class="fa fa-star"></i></td>
+																<td class="inbox-small-cells"><i class="fa fa-bookmark text-danger"></i></td>
+																<td class="view-message dont-show fw-semibold">Laura Gaffin, S P N </td>
+																<td class="view-message">Your Website On Google (Higher Rankings Are Better)</td>
+																<td class="view-message text-end fw-semibold">August 10</td>
+															</tr>
+															<tr>
+																<td class="inbox-small-cells">
+																	<label class="custom-control custom-checkbox mb-0">
+																		<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+																		<span class="custom-control-label"></span>
+																	</label>
+																</td>
+																<td class="inbox-small-cells"><i class="fa fa-star"></i></td>
+																<td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
+																<td class="view-message dont-show fw-semibold">Facebook</td>
+																<td class="view-message view-message">Alireza Zare Login faild</td>
+																<td class="view-message text-end fw-semibold">feb 14</td>
+															</tr>
+															<tr>
+																<td class="inbox-small-cells">
+																	<label class="custom-control custom-checkbox mb-0">
+																		<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+																		<span class="custom-control-label"></span>
+																	</label>
+																</td>
+																<td class="inbox-small-cells"><i class="fa fa-star"></i></td>
+																<td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
+																<td class="view-message dont-show fw-semibold">AddMe.com</td>
+																<td class="view-message">Submit Your Website to the AddMe Business Directory</td>
+																<td class="view-message text-end fw-semibold">August 10</td>
+															</tr>
+															<tr>
+																<td class="inbox-small-cells">
+																	<label class="custom-control custom-checkbox mb-0">
+																		<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+																		<span class="custom-control-label"></span>
+																	</label>
+																</td>
+																<td class="inbox-small-cells"><i class="fa fa-star"></i></td>
+																<td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
+																<td class="view-message dont-show fw-semibold">Terri Rexer, S P N</td>
+																<td class="view-message view-message">Forget Google AdWords: Un-Limited Clicks fo</td>
+																<td class="view-message text-end fw-semibold">April 14</td>
+															</tr>
+														</tbody>
+													</table>
+
+												</div>
+											</div>
+										</div>
+									</div>
+									<ul class="pagination mb-4">
+										<li class="page-item page-prev disabled">
+											<a class="page-link" href="#" tabindex="-1">Prev</a>
+										</li>
+										<li class="page-item active"><a class="page-link" href="#">1</a></li>
+										<li class="page-item"><a class="page-link" href="#">2</a></li>
+										<li class="page-item"><a class="page-link" href="#">3</a></li>
+										<li class="page-item"><a class="page-link" href="#">4</a></li>
+										<li class="page-item"><a class="page-link" href="#">5</a></li>
+										<li class="page-item page-next">
+											<a class="page-link" href="#">Next</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<!-- ROW-1 CLOSED -->
