@@ -22,7 +22,7 @@ namespace noa.Controllers.helpdesk
             var client = new HttpClient();
 
             // Realiza la solicitud GET
-            var response = await client.GetAsync($"{_configuration["Inven:URL"]}/Asignacion");
+            var response = await client.GetAsync($"{_configuration["Inven:URL"]}/Asignacion/Consultal linq");
 
             if (response.IsSuccessStatusCode)
             {
@@ -38,7 +38,7 @@ namespace noa.Controllers.helpdesk
         public async Task<List<AsignacionDTO>> BuscaId(string buscaid)
         {
             var client = new HttpClient();
-            var request = await client.GetAsync($"{_configuration["Inven:URL"]}/Asignacion/{buscaid}");
+            var request = await client.GetAsync($"{_configuration["Inven:URL"]}/Consultal/linq/{buscaid}");
             if (request.IsSuccessStatusCode)
             {
                 var jsonResponse = await request.Content.ReadAsStringAsync();

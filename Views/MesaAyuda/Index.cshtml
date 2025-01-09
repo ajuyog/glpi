@@ -1,8 +1,6 @@
 ﻿@model List<MesadeAyudaDTO>
-<!-- PAGE-HEADER END -->
-<!-- Row -->
 <div class="row p-3">
-	<div class="col-md-12 col-lg-4 col-xl-3">
+	<div class="col-md-12 col-lg-4 col-xl-3"> 
 		<div class="card">
 			<div class="card-header border-bottom p-3 d-flex justify-content-between align-items-center">
 				<button type="button" id="openModalBtn" class="btn btn-outline-primary py-2 mb-0">
@@ -26,7 +24,7 @@
 							En proceso <i class="mdi mdi-chevron-right ms-2" aria-hidden="true"></i>
 						</a>
 					</li>
-					<li class="nav-item1">
+					<li class="nav-item1"> 
 						<a class="nav-link thumb" href="#">
 							Finalizado <i class="mdi mdi-chevron-right ms-2" aria-hidden="true"></i>
 						</a>
@@ -47,195 +45,16 @@
 					<div class="table-responsive">
 						<table class="table table-inbox table-hover text-nowrap mb-0">
 							<tbody>
-								@* @foreach (var i in Model)
+								@foreach (var i in Model)
 								{
-									<tr>
-										<td>@i.Id</td>
-										<td>@i.Categoria</td>
-										<td>@i.Error</td>
-										<td>@i.Descripccion</td>
+									<tr onclick="openTicketModal(@i.Id)" style="cursor: pointer;">
+										<td>@i.Nombreapellidos</td>
+										<td>@i.Solicitud</td>
+										<td>@i.Descripcion</td>
 									</tr>
-								} *@
-								<tr>
-									<td class="inbox-small-cells">
-									</td>
-									<td></td> 
-									<td></td> 
-									<td></td> 
-									<td></td> 
-									<td></td> 
-								</tr>
-								<tr class="unread">
-									<td class="inbox-small-cells">
-									</td>
-									<td></td> 
-									<td></td> 
-									<td></td> 
-									<td></td> 
-									<td></td> 
-								</tr>
-								<tr>
-									<td class="inbox-small-cells">
-									</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="inbox-small-cells">
-									</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="inbox-small-cells">
-									</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="inbox-small-cells">
-									</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="inbox-small-cells">
-									</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr class="unread">
-									<td class="inbox-small-cells">
-									</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="inbox-small-cells">
-									</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="inbox-small-cells">
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="inbox-small-cells">
-									</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr class="unread">
-									<td class="inbox-small-cells">
-									</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="inbox-small-cells">
-									</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="inbox-small-cells">
-									</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="inbox-small-cells">
-									</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="inbox-small-cells">
-									</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="inbox-small-cells">
-									</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="inbox-small-cells">
-									</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="inbox-small-cells">
-									</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="inbox-small-cells">
-									</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
+								}
 							</tbody>
+
 						</table>
 					</div>
 				</div>
@@ -256,6 +75,25 @@
 		</ul>
 	</div>
 </div>
+<div id="ticketModal" class="modal" style="display: none;">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Detalles del Ticket</h5>
+				<button type="button" class="btn-close" onclick="closeModal()"></button>
+			</div>
+			<div class="modal-body">
+				<p id="ticketDetails">Cargando...</p>
+				<textarea id="responseBox" class="form-control" placeholder="Escribe tu respuesta"></textarea>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary" onclick="closeModal()">Cerrar</button>
+				<button class="btn btn-primary" onclick="sendResponse()">Enviar Respuesta</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="card-body">
 	<div class="modal" id="myModal">
 		<div class="modal-content">
@@ -268,208 +106,208 @@
 							</div>
 							<div class="card-body">
 								<form class="needs-validation" novalidate>
-									<!-- Campo de Área -->
-									<div class="mb-3">
-										<label for="validationCustom02" class="form-label">Área</label>
-										<input type="text" class="form-control" id="validationCustom02" value="Tecnología" required>
-									</div>
-
-									<!-- Campo de Solicitud -->
-									<div class="mb-3">
-										<label for="validationCustom04" class="form-label">Solicitud</label>
-										<select class="form-control form-select" id="solicitud" required>
-											<option value="">Seleccione</option>
-											<option value="portatil">Portátil</option>
-											<option value="tecladoMouse">Teclado/Mouse</option>
-											<option value="monitor">Monitor</option>
-											<option value="aplicacionesEmail">Aplicaciones/Email</option>
-											<option value="celularesLlamadas">Celulares/Llamadas</option>
-											<option value="conectividad">Conectividad</option>
-											<option value="impresora">Impresora</option>
-											<option value="marketingDiseno">Marketing y Diseño</option>
-										</select>
-										<div class="invalid-feedback">
-											Por favor seleccione una opción válida.
+									@using (Html.BeginForm("NuevoTicket", "MesaAyuda", FormMethod.Post, new { enctype = "multipart/form-data" })){
+										<!-- Campo de Área -->
+										<div class="mb-3">
+											<label for="validationCustom02" class="form-label">Área</label>
+											<input type="text" class="form-control" id="validationCustom02" value="Tecnología" required>
 										</div>
-									</div>
-
-									<!-- Campos ocultos dinámicos -->
-									<div id="errorPortatil" class="mb-3 hidden">
-										<label for="errorPortatilSelect" class="form-label">Error Portátil</label>
-										<select class="form-select" id="errorPortatilSelect" required>
-											<option value="">Seleccione</option>
-											<option>Olvido de contraseña</option>
-											<option>Portátil no inicia/Prende</option>
-											<option>Portátil no carga batería</option>
-											<option>Pantalla Azul</option>
-											<option>Pantalla quemada/Imagen estática</option>
-											<option>PC Lento</option>
-											<option>Error al prender la PC/Pantalla Blanca</option>
-											<option>Asignación PC Funcionario/Cambio</option>
-											<option>Actualización de Driver</option>
-											<option>Mantenimiento a equipo de cómputo</option>
-										</select>
-									</div>
-									<div id="errorTecladoMouse" class="mb-3 hidden">
-										<label for="errorTecladoMouseSelect" class="form-label">Error Teclado/Mouse</label>
-										<select class="form-select" id="errorTecladoMouseSelect" required>
-											<option value="">Seleccione</option>
-											<option>No detecta/Teclado</option>
-											<option>Tecla del teclado no funciona</option>
-											<option>No concuerda con las teclas</option>
-											<option>Teclado responde lento</option>
-											<option>No reconoce/Mouse</option>
-											<option>Mouse/No funciona</option>
-											<option>Repuesto/Teclado</option>
-											<option>Cambio/Teclado Mouse</option>
-											<option>Mantenimiento a Teclado/Mouse</option>
-											<option>Asignación temporal Teclado/Mouse</option>
-											<option>Otro</option>
-										</select>
-									</div>
-									<div id="errormonitor" class="mb-3 hidden">
-										<label for="errormonitorSelect" class="form-label">Error Monitor</label>
-										<select class="form-select" id="errormonitorSelect" required>
-											<option value="">Seleccione</option>
-											<option>Monitor no prende</option>
-											<option>Monitor no da imagen</option>
-											<option>Pantalla quemada/Imagen permanente</option>
-											<option>Configuración para el Monitor</option>
-											<option>Intermitencia en la pantalla</option>
-											<option>Otro</option>
-										</select>
-									</div>
-									<div id="erroraplicacionesEmail" class="mb-3 hidden">
-										<label for="erroraplicacionesEmailSelect" class="form-label">Aplicaciones</label>
-										<select class="form-select" id="erroraplicacionesEmailSelect" required>
-											<option value="">Seleccione</option>
-											<option>Valuez BPM</option>
-											<option>ISAAC</option>
-											<option>CRM</option>
-											<option>Lyntik</option>
-											<option>Office 365</option>
-											<option>Outlook</option>
-											<option>Onedrive</option>
-											<option>SharePoint</option>
-											<option>Teams</option>
-											<option>Navegador</option>
-											<option>PDF</option>
-											<option>Aplicación de banco</option>
-											<option>Página convival</option>
-											<option>Base de datos</option>
-											<option>kaspersky/Antivirus</option>
-											<option>Otro</option>
-										</select>
-									</div>
-									<div id="errorSolicitudAplicaciones" class="mb-3 hidden">
-										<label for="errorSolicitudAplicacionesSelect" class="form-label">Error/solicitud aplicaciones</label>
-										<select class="form-select" id="errorSolicitudAplicacionesSelect" required>
-											<option value="">Seleccione</option>
-											<option>Asignación de rol</option>
-											<option>Olvido de contraseña</option>
-											<option>Instalación de aplicación</option>
-											<option>Desinstalación de aplicación</option>
-											<option>Actualización de aplicativo</option>
-											<option>Cambio de idioma/Aplicación</option>
-											<option>Fallo de aplicación</option>
-											<option>Fallo de carga de información/Aplicaciones</option>
-											<option>Error/Carpeta compartida</option>
-											<option>Fallo al abrir archivo</option>
-											<option>Fallo al descargar archivo</option>
-											<option>Fallo al cargar archivo</option>
-											<option>Fallo de link/Error</option>
-											<option>Solicitud de cargar información</option>
-											<option>Solicitud de acceso/Email</option>
-											<option>Solicitud de asignación Usuario/Email</option>
-											<option>Ajuste de visualización de documentos</option>
-											<option>Asignación de licencia</option>
-											<option>Lista con información incompleta</option>
-											<option>Solicitud de acceso a sitio Web</option>
-											<option>Otro</option>
-										</select>
-									</div>
-									<div id="errorcelularesLlamadas" class="mb-3 hidden">
-										<label for="celularesLlamadasSelect" class="form-label">Error Celular</label>
-										<select class="form-select" id="celularesLlamadasSelect" required>
-											<option value="">Seleccione</option>
-											<option>Configuración Aplicativo Enlace</option>
-											<option>No conecta con el portátil</option>
-											<option>No salen llamadas</option>
-											<option>No se escucha en la diademada</option>
-											<option>No me escuchan en la llamada</option>
-											<option>Se escucha interferencia</option>
-											<option>Whatsapp Business/Error</option>
-											<option>Descarga de aplicaciones</option>
-											<option>Desinstalación de aplicaciones</option>
-											<option>Cambio de numero de SIM</option>
-											<option>Otro</option>
-										</select>
-									</div>
-									<div id="errorconectividad" class="mb-3 hidden">
-										<label for="conectividadSelect" class="form-label">Error conectividad</label>
-										<select class="form-select" id="conectividadSelect" required>
-											<option value="">Seleccione</option>
-											<option>No conecta a internet/Wifi</option>
-											<option>No conecta a internet/Cable</option>
-											<option>Test de velocidad</option>
-											<option>Otro</option>
-										</select>
-									</div>
-									<div id="errorimpresora" class="mb-3 hidden">
-										<label for="impresoraSelect" class="form-label">Error de impresora</label>
-										<select class="form-select" id="impresoraSelect" required>
-											<option value="">Seleccione</option>
-											<option>No envía el Scanner</option>
-											<option>No Detecta/Reconoce impresora</option>
-											<option>Papel Atascado</option>
-											<option>Solicita cambio de tóner</option>
-											<option>Registro de IMEL Funcionario</option>
-											<option>Instalación de impresora</option>
-											<option>Otro</option>
-										</select>
-									</div>
-									<div id="" class="mb-3 hidden">
-										<label for="" class="form-label">Marca</label>
-										<select class="form-select" id="" required>
-											<option value="">Seleccione</option>
-											<option>Sevipaz</option>
-											<option>Confival Capital</option>
-											<option>Ankor</option>
-											<option>Sentencias</option>
-											<option>Otro</option>
-										</select>
-									</div>
-									<div id="" class="mb-3 hidden">
-										<label for="" class="form-label"></label>
-										<select class="form-select" id="" required>
-											<option value="">Seleccione</option>
-											<option>Diseño Presentaciones</option>
-											<option>Diseño Tarjetas</option>
-											<option>Diseño Correo Electrónico</option>
-											<option>Diseño Piezas redes</option>
-											<option>Diseño Web</option>
-											<option>Diseño pieza impresa</option>
-											<option>Diseño de Campañas</option>
-											<option>Otro</option>
-										</select>
-									</div>
-									<div class="mb-3">
-										<label for="" class="form-label">Descripcción</label>
-										<textarea class="form-control mb-4" placeholder="Haga una descripción del problema" rows="3"></textarea>
-									</div>
-									<div class="row mb-4">
-										<label for="" class="form-label">Adjuntar Imagen</label>
-										<div class="center mb-3">
-											<input type="file" class="dropify" data-height="200" />
+										<!-- Campo de Solicitud -->
+										<div class="md-3">
+											<label for="validationCustom04" class="form-label">Solicitud</label>
+											<select class="form-select" id="solicitud" required>
+												<option value="">Seleccione</option>
+												<option value="portatil">Portátil</option>
+												<option value="tecladoMouse">Teclado/Mouse</option>
+												<option value="monitor">Monitor</option>
+												<option value="aplicacionesEmail">Aplicaciones/Email</option>
+												<option value="celularesLlamadas">Celulares/Llamadas</option>
+												<option value="conectividad">Conectividad</option>
+												<option value="impresora">Impresora</option>
+												<option value="marketingDiseno">Marketing y Diseño</option>
+											</select>
+											<div class="invalid-feedback">
+												Por favor seleccione una opción válida.
+											</div>
 										</div>
-									</div>
+										<!-- Campos ocultos dinámicos -->
+										<div id="errorPortatil" class="mb-3 hidden">
+											<label for="errorPortatilSelect" class="form-label">Error Portátil</label>
+											<select class="form-select" id="errorPortatilSelect" required>
+												<option value="">Seleccione</option>
+												<option>Olvido de contraseña</option>
+												<option>Portátil no inicia/Prende</option>
+												<option>Portátil no carga batería</option>
+												<option>Pantalla Azul</option>
+												<option>Pantalla quemada/Imagen estática</option>
+												<option>PC Lento</option>
+												<option>Error al prender la PC/Pantalla Blanca</option>
+												<option>Asignación PC Funcionario/Cambio</option>
+												<option>Actualización de Driver</option>
+												<option>Mantenimiento a equipo de cómputo</option>
+											</select>
+										</div>
+										<div id="errorTecladoMouse" class="mb-3 hidden">
+											<label for="errorTecladoMouseSelect" class="form-label">Error Teclado/Mouse</label>
+											<select class="form-select" id="errorTecladoMouseSelect" required>
+												<option value="">Seleccione</option>
+												<option>No detecta/Teclado</option>
+												<option>Tecla del teclado no funciona</option>
+												<option>No concuerda con las teclas</option>
+												<option>Teclado responde lento</option>
+												<option>No reconoce/Mouse</option>
+												<option>Mouse/No funciona</option>
+												<option>Repuesto/Teclado</option>
+												<option>Cambio/Teclado Mouse</option>
+												<option>Mantenimiento a Teclado/Mouse</option>
+												<option>Asignación temporal Teclado/Mouse</option>
+												<option>Otro</option>
+											</select>
+										</div>
+										<div id="errormonitor" class="mb-3 hidden">
+											<label for="errormonitorSelect" class="form-label">Error Monitor</label>
+											<select class="form-select" id="errormonitorSelect" required>
+												<option value="">Seleccione</option>
+												<option>Monitor no prende</option>
+												<option>Monitor no da imagen</option>
+												<option>Pantalla quemada/Imagen permanente</option>
+												<option>Configuración para el Monitor</option>
+												<option>Intermitencia en la pantalla</option>
+												<option>Otro</option>
+											</select>
+										</div>
+										<div id="erroraplicacionesEmail" class="mb-3 hidden">
+											<label for="erroraplicacionesEmailSelect" class="form-label">Aplicaciones</label>
+											<select class="form-select" id="erroraplicacionesEmailSelect" required>
+												<option value="">Seleccione</option>
+												<option>Valuez BPM</option>
+												<option>ISAAC</option>
+												<option>CRM</option>
+												<option>Lyntik</option>
+												<option>Office 365</option>
+												<option>Outlook</option>
+												<option>Onedrive</option>
+												<option>SharePoint</option>
+												<option>Teams</option>
+												<option>Navegador</option>
+												<option>PDF</option>
+												<option>Aplicación de banco</option>
+												<option>Página convival</option>
+												<option>Base de datos</option>
+												<option>kaspersky/Antivirus</option>
+												<option>Otro</option>
+											</select>
+										</div>
+										<div id="errorSolicitudAplicaciones" class="mb-3 hidden">
+											<label for="errorSolicitudAplicacionesSelect" class="form-label">Error/solicitud aplicaciones</label>
+											<select class="form-select" id="errorSolicitudAplicacionesSelect" required>
+												<option value="">Seleccione</option>
+												<option>Asignación de rol</option>
+												<option>Olvido de contraseña</option>
+												<option>Instalación de aplicación</option>
+												<option>Desinstalación de aplicación</option>
+												<option>Actualización de aplicativo</option>
+												<option>Cambio de idioma/Aplicación</option>
+												<option>Fallo de aplicación</option>
+												<option>Fallo de carga de información/Aplicaciones</option>
+												<option>Error/Carpeta compartida</option>
+												<option>Fallo al abrir archivo</option>
+												<option>Fallo al descargar archivo</option>
+												<option>Fallo al cargar archivo</option>
+												<option>Fallo de link/Error</option>
+												<option>Solicitud de cargar información</option>
+												<option>Solicitud de acceso/Email</option>
+												<option>Solicitud de asignación Usuario/Email</option>
+												<option>Ajuste de visualización de documentos</option>
+												<option>Asignación de licencia</option>
+												<option>Lista con información incompleta</option>
+												<option>Solicitud de acceso a sitio Web</option>
+												<option>Otro</option>
+											</select>
+										</div>
+										<div id="errorcelularesLlamadas" class="mb-3 hidden">
+											<label for="celularesLlamadasSelect" class="form-label">Error Celular</label>
+											<select class="form-select" id="celularesLlamadasSelect" required>
+												<option value="">Seleccione</option>
+												<option>Configuración Aplicativo Enlace</option>
+												<option>No conecta con el portátil</option>
+												<option>No salen llamadas</option>
+												<option>No se escucha en la diademada</option>
+												<option>No me escuchan en la llamada</option>
+												<option>Se escucha interferencia</option>
+												<option>Whatsapp Business/Error</option>
+												<option>Descarga de aplicaciones</option>
+												<option>Desinstalación de aplicaciones</option>
+												<option>Cambio de numero de SIM</option>
+												<option>Otro</option>
+											</select>
+										</div>
+										<div id="errorconectividad" class="mb-3 hidden">
+											<label for="conectividadSelect" class="form-label">Error conectividad</label>
+											<select class="form-select" id="conectividadSelect" required>
+												<option value="">Seleccione</option>
+												<option>No conecta a internet/Wifi</option>
+												<option>No conecta a internet/Cable</option>
+												<option>Test de velocidad</option>
+												<option>Otro</option>
+											</select>
+										</div>
+										<div id="errorimpresora" class="mb-3 hidden">
+											<label for="impresoraSelect" class="form-label">Error de impresora</label>
+											<select class="form-select" id="impresoraSelect" required>
+												<option value="">Seleccione</option>
+												<option>No envía el Scanner</option>
+												<option>No Detecta/Reconoce impresora</option>
+												<option>Papel Atascado</option>
+												<option>Solicita cambio de tóner</option>
+												<option>Registro de IMEL Funcionario</option>
+												<option>Instalación de impresora</option>
+												<option>Otro</option>
+											</select>
+										</div>
+										<div id="" class="mb-3 hidden">
+											<label for="" class="form-label">Marca</label>
+											<select class="form-select" id="" required>
+												<option value="">Seleccione</option>
+												<option>Sevipaz</option>
+												<option>Confival Capital</option>
+												<option>Ankor</option>
+												<option>Sentencias</option>
+												<option>Otro</option>
+											</select>
+										</div>
+										<div id="" class="mb-3 hidden">
+											<label for="" class="form-label"></label>
+											<select class="form-select" id="" required>
+												<option value="">Seleccione</option>
+												<option>Diseño Presentaciones</option>
+												<option>Diseño Tarjetas</option>
+												<option>Diseño Correo Electrónico</option>
+												<option>Diseño Piezas redes</option>
+												<option>Diseño Web</option>
+												<option>Diseño pieza impresa</option>
+												<option>Diseño de Campañas</option>
+												<option>Otro</option>
+											</select>
+										</div>
+										<div class="mb-3">
+											<label for="" class="form-label">Descripcción</label>
+											<textarea class="form-control mb-4" placeholder="Haga una descripción del problema" rows="3"></textarea>
+										</div>
+										<div class="row mb-4">
+											<label for="" class="form-label">Adjuntar Imagen</label>
+											<div class="center mb-3">
+												<input type="file" class="dropify" data-height="200" />
+											</div>
+										</div>
+									}
 								</form>
 							</div>
 						</div>
-							<div class="btn-container">
-								<button class="btn btn-primary" type="submit">Enviar</button>
-								<button class="close-btn" id="closeModalBtn">Cerrar</button>
-							</div>
+						<div class="btn-container">
+							<button class="btn btn-primary" type="submit">Enviar</button>
+							<button class="close-btn" id="closeModalBtn">Cerrar</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -504,4 +342,5 @@
 	<script src="~/assets/plugins/fancyuploder/fancy-uploader.js"></script>
 	<!-- FORM ELEMENTADVANCED JS -->
 	<script src="~/assets/js/formelementadvnced.js"></script>
+
 }

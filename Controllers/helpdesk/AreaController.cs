@@ -42,7 +42,7 @@ public class AreaController : Controller
     public async Task<List<AreaDTO>> BuscaId(string buscaid)
     {
         var client = new HttpClient();
-        var request = await client.GetAsync($"{_configuration["Inven:URL"]}/Area/{buscaid}");
+        var request = await client.GetAsync($"{_configuration["Inven:URL"]}/{buscaid}");
         if (request.IsSuccessStatusCode)
         {
             var jsonResponse = await request.Content.ReadAsStringAsync();
@@ -59,12 +59,11 @@ public class AreaController : Controller
     [HttpPost]
     public async Task<IActionResult> InsertUpdate(AreaDTO areaDTO)
     {
-        Console.WriteLine("HOla");
         var model = ListaDTO().Result;
         if (areaDTO.Id != 0)
         {
             var httpClient = new HttpClient();
-            var response = await httpClient.PutAsJsonAsync($"{_configuration["Inven:URL"]}/Area/{areaDTO.Id}", areaDTO);
+            var response = await httpClient.PutAsJsonAsync($"{_configuration["Inven:URL"]}/{areaDTO.Id}", areaDTO);
             if (response.IsSuccessStatusCode)
             {
                 //var responseData = await response.Content.ReadAsStringAsync();           
@@ -88,7 +87,7 @@ public class AreaController : Controller
             else
             {
                 var client = new HttpClient();
-                var request = await client.PostAsJsonAsync($"{_configuration["Inven:URL"]}/Area", areaDTO);
+                var request = await client.PostAsJsonAsync($"{_configuration["Inven:URL"]}", areaDTO);
                 if (request.IsSuccessStatusCode)
                 {
                     //var re = await request.Content.ReadAsStringAsync();
@@ -111,7 +110,7 @@ public class AreaController : Controller
     public async Task<bool> EliminarArea(string deleteid)
     {
         var client = new HttpClient();
-        var response = await client.DeleteAsync($"{_configuration["Inven:URL"]}/Area/{deleteid}");
+        var response = await client.DeleteAsync($"{_configuration["Inven:URL"]}/{deleteid}");
         if (response.IsSuccessStatusCode)
         {
             Console.WriteLine("Área eliminada exitosamente.");
