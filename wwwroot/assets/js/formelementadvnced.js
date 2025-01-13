@@ -13,7 +13,7 @@ $(function (e) {
 	$('.select2-show-search').select2({
 		minimumResultsForSearch: '',
 		width: '100%',
-		dropdownParent: $('#detellePersonas-modal, #detelleFacturacion-modal, #detelleAsignacion')
+		dropdownParent: $('#detellePersonas-modal, #detelleFacturacion-modal, #detelleAsignacion, #modalsystemTicket')
 	})
 	$('.select3-show-search').select2({
 		minimumResultsForSearch: '',

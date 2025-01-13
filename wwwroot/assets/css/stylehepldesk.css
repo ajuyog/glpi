@@ -50,3 +50,41 @@
 .clickable-row {
     cursor: pointer;
 }
+.card{
+    position: relative;
+    margin-bottom: 1.5rem;
+    width :272px;
+      
+}
+
+@media (min-width: 1280px) {
+    .col-xl-3 {
+        -ms-flex: 0 0 25%;
+        flex: 0 0 25%;
+        max-width: 10%;
+    }
+}
+.btn-en-fila {
+    background-color: #0f68a7;
+    color: white;
+}
+
+.btn-en-proceso {
+    background-color: #ffc107;
+    color: black;
+}
+
+.btn-finalizado {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-cancelado {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-default {
+    background-color: #6c757d;
+    color: white;
+}

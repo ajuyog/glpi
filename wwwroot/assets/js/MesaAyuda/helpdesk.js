@@ -1,7 +1,7 @@
 ﻿// JavaScript para manejar la apertura y cierre de la modal
 const openModalBtn = document.getElementById('openModalBtn');
 const closeModalBtn = document.getElementById('closeModalBtn');
-const modal = document.getElementById('myModal');
+const modal = document.getElementById('modalsystemTicket');
 
 openModalBtn.addEventListener('click', () => {
     modal.style.display = 'flex'; // Mostrar la modal
@@ -35,35 +35,56 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
-const solicitudSelect = document.getElementById('solicitud');
-const errorPortatilDiv = document.getElementById('errorPortatil');
-const errorTecladoMouseDiv = document.getElementById('errorTecladoMouse');
-const errormonitorDiv = document.getElementById('errormonitor');
-const erroraplicacionesEmailDiv = document.getElementById('erroraplicacionesEmail');
-const erroraplicacionesDiv = document.getElementById('errorSolicitudAplicaciones'); // Cambié el ID aquí
+//const solicitudSelect = document.getElementById('solicitud');
+//const errorPortatilDiv = document.getElementById('errorPortatil');
+//const errorTecladoMouseDiv = document.getElementById('errorTecladoMouse');
+//const errormonitorDiv = document.getElementById('errormonitor');
+//const erroraplicacionesEmailDiv = document.getElementById('erroraplicacionesEmail');
+//const erroraplicacionesDiv = document.getElementById('errorSolicitudAplicaciones'); // Cambié el ID aquí
 
-solicitudSelect.addEventListener('change', () => {
-    console.log('Selector cambiado:', solicitudSelect.value); // Esto es para depuración.
+//solicitudSelect.addEventListener('change', () => {
+//    console.log('Selector cambiado:', solicitudSelect.value); // Esto es para depuración.
 
-    // Oculta todos los selectores inicialmente.
-    errorPortatilDiv.classList.add('hidden');
-    errorTecladoMouseDiv.classList.add('hidden');
-    errormonitorDiv.classList.add('hidden');
-    erroraplicacionesEmailDiv.classList.add('hidden');
-    erroraplicacionesDiv.classList.add('hidden');
+//    // Oculta todos los selectores inicialmente.
+//    errorPortatilDiv.classList.add('hidden');
+//    errorTecladoMouseDiv.classList.add('hidden');
+//    errormonitorDiv.classList.add('hidden');
+//    erroraplicacionesEmailDiv.classList.add('hidden');
+//    erroraplicacionesDiv.classList.add('hidden');
 
-    // Muestra los campos correspondientes
-    if (solicitudSelect.value === 'portatil') {
-        errorPortatilDiv.classList.remove('hidden');
-    } else if (solicitudSelect.value === 'tecladoMouse') {
-        errorTecladoMouseDiv.classList.remove('hidden');
-    } else if (solicitudSelect.value === 'monitor') {
-        errormonitorDiv.classList.remove('hidden');
-    } else if (solicitudSelect.value === 'aplicacionesEmail') {
-        erroraplicacionesEmailDiv.classList.remove('hidden');
-        erroraplicacionesDiv.classList.remove('hidden'); // Muestra ambos selectores
-    } else if (solicitudSelect.value === 'aplicaciones') {
-        erroraplicacionesDiv.classList.remove('hidden');
-        erroraplicacionesEmailDiv.classList.remove('hidden'); // Muestra ambos selectores
-    }
-});
+//    // Muestra los campos correspondientes
+//    if (solicitudSelect.value === 'portatil') {
+//        errorPortatilDiv.classList.remove('hidden');
+//    } else if (solicitudSelect.value === 'tecladoMouse') {
+//        errorTecladoMouseDiv.classList.remove('hidden');
+//    } else if (solicitudSelect.value === 'monitor') {
+//        errormonitorDiv.classList.remove('hidden');
+//    } else if (solicitudSelect.value === 'aplicacionesEmail') {
+//        erroraplicacionesEmailDiv.classList.remove('hidden');
+//        erroraplicacionesDiv.classList.remove('hidden'); // Muestra ambos selectores
+//    } else if (solicitudSelect.value === 'aplicaciones') {
+//        erroraplicacionesDiv.classList.remove('hidden');
+//        erroraplicacionesEmailDiv.classList.remove('hidden'); // Muestra ambos selectores
+//    }
+//});
+function ListaSolicitud() {
+    $.ajax({
+        url: "/MesaAyuda/ListaSolicitud",
+        type: "GET",
+        success: function (data) {
+            const select = $('#userId');
+            select.empty();
+            select.append('<option value="">Selecciona</option>');
+            data.forEach(function (item) {
+                const option = $('<option></option>')
+                    .val(item.id)
+                    .text(`${item.normalizedUserName}`);
+                select.append(option);
+            });
+        },
+        error: function (xhr, status, error) {
+            console.log('Error:', error);
+            alert('Hubo un error al cargar los datos.');
+        }
+    });
+}
