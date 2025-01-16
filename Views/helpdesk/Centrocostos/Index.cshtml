@@ -1,4 +1,6 @@
-﻿@model List<CentroDeCostoDTO>
+﻿@* @model List<CentroDeCostoDTO> *@
+@model CentroCosto
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
 <div class="d-flex justify-content-between align-items-center">
     <!-- Título -->
@@ -12,304 +14,49 @@
         Previsualizar PDF
     </button>
 </div>
-@* <!-- Tablas visibles para los usuarios -->
-<div id="visible-tables">
-
-</div> *@
 <div class="row">
-    <!-- Área TI -->
-    <div class="col-12">
-        <div class="card custom-card">
-            <div class="card-body" style="padding: 0rem;">
-                <div class="text-center mt-4">
-                    <h1>Tecnología</h1>
-                </div>
-                <div class="table-responsive">
-                    <div class="card-body">
-                        <table class="table text-nowrap text-md-nowrap table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Tipo de elemento</th>
-                                    <th>Número de serial</th>
-                                    <th>Valor unitario</th>
-                                    <th>Valor total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var i in Model)
-                                {
-                                    <tr>
-                                        <td>@i.IdEnsamble</td>
-                                        <td>@i.NumeroSerial</td>
-                                        <td>@i.VlrNeto</td>
-                                        <td></td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
+    @{
+        var groupedModel = Model.EquiposSolos.GroupBy(item => item.Area);
+    }
+    @foreach (var group in groupedModel)
+    {
+        <div class="col-12">
+            <div class="card custom-card">
+                <div class="card-body" style="padding: 0rem;">
+                    <div class="text-center mt-4">
+                        <h1>@group.Key</h1> <!-- Nombre área -->
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Área Comercial -->
-    <div class="col-12">
-        <div class="card custom-card">
-            <div class="card-body" style="padding: 0rem;">
-                <div class="text-center mt-4">
-                    <h1>Comercial</h1>
-                </div>
-                <div class="table-responsive">
-                    <div class="card-body">
-                        <table class="table text-nowrap text-md-nowrap table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Tipo de elemento</th>
-                                    <th>Número de serial</th>
-                                    <th>Valor unitario</th>
-                                    <th>Valor total</th>
-                                </tr>
-                            </thead>
-                            @foreach (var i in Model)
-                            {
+                    <div class="table-responsive">
+                        <div class="card-body">
+                            <table class="table text-nowrap text-md-nowrap table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Tipo de elemento</th>
+                                        <th>Número de serial</th>
+                                        <th>Valor unitario</th>
+                                        <th>Valor del IVA</th>
+                                        <th>Valor en Bruto</th>
+                                    </tr>
+                                </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>@i.IdEnsamble</td>
-                                        <td>@i.NumeroSerial</td>
-                                        <td>@i.VlrNeto</td>
-                                        <td>@i.</td>
-                                    </tr>
+                                    @foreach (var item in group)
+                                    {
+                                        <tr>
+                                            <td>@item.Marca</td>
+                                            <td>@item.NumeroSerial</td>
+                                            <td>@($"$ {item.VlrNeto}")</td>
+                                            <td>19%</td>
+                                            <td>@($"$ {item.VlrNeto}")</td>
+                                        </tr>
+                                    }
                                 </tbody>
-                            }
-                        </table>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
-<div class="row">
-    <!-- Área Jurídica -->
-    <div class="col-12">
-        <div class="card custom-card">
-            <div class="card-body" style="padding: 0rem;">
-                <div class="text-center mt-4">
-                    <h1>Jurídica</h1>
-                </div>
-                <div class="table-responsive">
-                    <div class="card-body">
-                        <table class="table text-nowrap text-md-nowrap table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Tipo de elemento</th>
-                                    <th>Número de serial</th>
-                                    <th>Valor unitario</th>
-                                    <th>Valor total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Área Contable -->
-    <div class="col-12">
-        <div class="card custom-card">
-            <div class="card-body" style="padding: 0rem;">
-                <div class="text-center mt-4">
-                    <h1>Contable</h1>
-                </div>
-                <div class="table-responsive">
-                    <div class="card-body">
-                        <table class="table text-nowrap text-md-nowrap table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Tipo de elemento</th>
-                                    <th>Número de serial</th>
-                                    <th>Valor unitario</th>
-                                    <th>Valor total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <!-- Gerencia -->
-    <div class="col-12">
-        <div class="card custom-card" style="padding: 0rem;">
-            <div class="text-center mt-4">
-                <h1>Gerencia</h1>
-            </div>
-            <div class="table-responsive">
-                <div class="card-body">
-                    <table class="table text-nowrap text-md-nowrap table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Tipo de elemento</th>
-                                <th>Número de serial</th>
-                                <th>Valor unitario</th>
-                                <th>Valor total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Talento Humano -->
-    <div class="col-12">
-        <div class="card custom-card">
-            <div class="text-center mt-4">
-                <h1>Talento Humano</h1>
-            </div>
-            <div class="table-responsive">
-                <div class="card-body">
-                    <table class="table text-nowrap text-md-nowrap table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Tipo de elemento</th>
-                                <th>Número de serial</th>
-                                <th>Valor unitario</th>
-                                <th>Valor total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <!-- Calidad -->
-    <div class="col-12">
-        <div class="card custom-card">
-            <div class="text-center mt-4">
-                <h1>Calidad</h1>
-            </div>
-            <div class="table-responsive">
-                <div class="card-body">
-                    <table class="table text-nowrap text-md-nowrap table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Tipo de elemento</th>
-                                <th>Número de serial</th>
-                                <th>Valor unitario</th>
-                                <th>Valor total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Portafolio -->
-    <div class="col-12">
-        <div class="card custom-card">
-            <div class="text-center mt-4">
-                <h1>Portafolio</h1>
-            </div>
-            <div class="table-responsive">
-                <div class="card-body">
-                    <table class="table text-nowrap text-md-nowrap table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Tipo de elemento</th>
-                                <th>Número de serial</th>
-                                <th>Valor unitario</th>
-                                <th>Valor total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <!-- Operaciones -->
-    <div class="col-12">
-        <div class="card custom-card">
-            <div class="text-center">
-                <h1>Operaciones</h1>
-            </div>
-            <div class="table-responsive">
-                <div class="card-body">
-                    <table class="table text-nowrap text-md-nowrap table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Tipo de elemento</th>
-                                <th>Número de serial</th>
-                                <th>Valor unitario</th>
-                                <th>Valor total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+    }
 </div>
 <div class="row">
     <div class="d-flex flex-row-reverse">
@@ -323,20 +70,29 @@
                         <table class="table text-nowrap text-md-nowrap table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Indicador</th>
-                                    <th>Valor</th>
+                                    <th>Area</th>
+                                    <th>Total Equipos</th>
+                                    <th>Total Area</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Total elementos</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>Promedio valor</td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
+                                @foreach ( var item in Model.ValorPorArea){
+                                    <tr>
+                                        <td>@item.NombreArea</td>
+                                        <td>@item.TotalEquipos</td>
+                                        <td>@($"$ {item.AreaVlrNeto}")</td>
+                                    </tr>
+                                }
+                            </tbody> 
+                            <tbody> 
+                                @foreach ( var item in Model.TotalGeneral){
+                                    <tr>
+                                        <td>Total a pagar</td>
+                                        <td></td>
+                                        <td>@($"$ {item.TotalVlrNeto}")</td>
+                                    </tr>
+                                }
+                            </tbody> 
                         </table>
                     </div>
                 </div>
@@ -344,14 +100,16 @@
         </div>
     </div>
 </div>
-
 <!-- Diseño oculto pero usado en el PDF -->
 <div id="content-to-pdf" style="display: none;">
     <div class="container">
         <div class="header text-center">
             <h1>Factura centro de costos</h1>
-            <p class="subtitle">Factura n.° 01234</p>
-            <p class="subtitle">2 de mayo de 2025</p>
+            @foreach (var i in Model.ValorPorArea)
+            {
+                <p class="subtitle">@i.Factura</p>
+                <p class="subtitle">@i.Fecha</p>
+            }
         </div>
         <div class="row">
             <!-- Área TI -->
@@ -384,43 +142,11 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Área Comercial -->
-            <div class="col-12">
-                <div class="card custom-card">
-                    <div class="card-body">
-                        <div class="text-center mt-4">
-                            <h2>Comercial</h2>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table text-nowrap text-md-nowrap table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Tipo de elemento</th>
-                                        <th>Número de serial</th>
-                                        <th>Valor unitario</th>
-                                        <th>Valor total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-
         <div class="totals text-end">
-            <p><strong>Subtotal:</strong> $14760</p>
-            <p><strong>Impuestos (0 %):</strong> $0</p>
-            <p><strong>Total:</strong> $14760</p>
+            <p><strong>Total Bruto:</strong> $14760</p>
+            <p><strong>IVA (19 %):</strong> $0</p>
+            <p><strong>Total a Pagar:</strong> $14760</p>
         </div>
     </div>
 </div>

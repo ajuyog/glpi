@@ -15,7 +15,6 @@
             element.style.display = 'none';
         });
 });
-
 document.getElementById('preview-pdf-btn').addEventListener('click', function () {
     var element = document.getElementById('content-to-pdf');
     var iframe = document.getElementById('pdf-preview-iframe');

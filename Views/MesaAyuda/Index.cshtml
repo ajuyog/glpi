@@ -47,7 +47,7 @@
 						<i class="fa fa-filter" aria-hidden="true"></i>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="#"> Nivel 1</a></l>
+						<li><a href="#"> Nivel 1</a></li>
 							<li><a href="#"> Nivel 2</a></li>
 							<li><a href="#"> Nivel 3</a></li>
 					</ul>
@@ -77,59 +77,6 @@
 				</li>
 			</ul>
 		</div>
-		@* <div class="row gx-3 gy-3">
-			<div class="container">
-				<div class="row gx-3 gy-3">
-					@foreach (var i in Model)
-					{
-						<div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
-							<!-- Card -->
-							<div class="card w-100">
-								<div class="card-header p-2">
-									<h3 class="card-title mb-0"></h3>
-								</div>
-								<a href="javascript:void(0)"
-								   class="btn btn-pill mt-2 @(
-										    i.EstadoId == "En fila" ? "btn-en-fila" :
-										    i.EstadoId == "En proceso" ? "btn-en-proceso" :
-										    i.EstadoId == "Finalizado" ? "btn-finalizado" :
-										    i.EstadoId == "Cancelado" ? "btn-cancelado" : "btn-default"
-										)">
-									@i.EstadoId
-								</a>
-								<div class="card-body text-center p-2">
-									<span>
-										<img src="~/assets/images/users/18.jpg" class="rounded-circle" style="width: 80px; height: 80px;">
-									</span>
-									<h4 class="h5 mb-1 mt-2">@i.Nombreapellidos</h4>
-									<h6 class="card-text mb-1 text-muted">@i.Solicitud</h6>
-									<p class="card-text mb-1">@i.Area</p>
-									<div class="row user-social-detail justify-content-center mt-2">
-										@if (i.EstatusId == "Nivel 1")
-										{
-											<i class="fe fe-info" style="color:#18b0e0;" aria-hidden="true" title="Baja"></i>
-										}
-										else if (i.EstatusId == "Nivel 2")
-										{
-											<i class="fa fa-exclamation" style="color:#f1c40f;" aria-hidden="true" title="Media"></i>
-										}
-										else if (i.EstatusId == "Nivel 3")
-										{
-											<i class="fa fa-exclamation-triangle" style="color:#f10808;" aria-hidden="true" title="Alta"></i>
-										}
-									</div>
-
-								</div>
-								<div class="card-footer text-center p-2">
-									<a href="javascript:void(0)" class="btn btn-pill btn-primary">Responder</a>
-								</div>
-							</div>
-						</div>
-
-					}
-				</div>
-			</div>
-		</div> *@
 		<div class="row gx-3 gy-3">
 			<div class="container">
 				<div class="row gx-3 gy-3">
@@ -161,13 +108,12 @@
 									<h4 class="h5 mb-1 mt-2">@i.Nombreapellidos</h4>
 									<h6 class="card-text mb-1 text-muted">@i.Solicitud</h6>
 									<p class="card-text mb-1">@i.Area</p>
-									<a href="javascript:void(0)"
-									   class="btn btn-pill @(
-            i.EstadoId == "En fila" ? "btn-en-fila" :
-            i.EstadoId == "En proceso" ? "btn-en-proceso" :
-            i.EstadoId == "Finalizado" ? "btn-finalizado" :
-            i.EstadoId == "Cancelado" ? "btn-cancelado" : "btn-default"
-        )">
+									<a class="btn btn-pill @(
+										    i.EstadoId == "En fila" ? "btn-en-fila" :
+										    i.EstadoId == "En proceso" ? "btn-en-proceso" :
+										    i.EstadoId == "Finalizado" ? "btn-finalizado" :
+										    i.EstadoId == "Cancelado" ? "btn-cancelado" : "btn-default"
+										)">
 										@i.EstadoId
 									</a>
 								</div>
@@ -189,7 +135,7 @@
 			</div>
 		</div>
 	</div>
-	<ul class="pagination mb-4">
+	<ul class="pagination justify-content-end">
 		<li class="page-item page-prev disabled">
 			<a class="page-link" href="#" tabindex="-1">Prev</a>
 		</li>
@@ -203,24 +149,6 @@
 			<a class="page-link" href="#">Next</a>
 		</li>
 	</ul> 
-</div>
-<div id="ticketModal" class="modal" style="display: none;">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Detalles del Ticket</h5>
-				<button type="button" class="btn-close" onclick="closeModal()"></button>
-			</div>
-			<div class="modal-body">
-				<p id="ticketDetails">Cargando...</p>
-				<textarea id="responseBox" class="form-control" placeholder="Escribe tu respuesta"></textarea>
-			</div>
-			<div class="modal-footer">
-				<button class="btn btn-secondary" onclick="closeModal()">Cerrar</button>
-				<button class="btn btn-primary" onclick="sendResponse()">Enviar Respuesta</button>
-			</div>
-		</div>
-	</div>
 </div>
 <div class="card-body">
 	<div class="modal" id="modalsystemTicket">
@@ -238,196 +166,12 @@
 									<label for="validationCustom02" class="form-label">Área</label>
 									<input type="text" class="form-control" id="validationCustom02" value="Tecnología" required>
 								</div>
-								<div class="col-sm-12 mb-3">
-									<div class="form-group">
-										<label class="form-label">Select2 Style-01: </label>
-										<ul>
-											<li class="select-client">
-												<select class="form-control select2-show-search select2-style1" id="solicitudticket" data-placeholder="Choose One">
-													<option value="Seleccione"></option>
-												</select>
-											</li>
-										</ul>
-									</div>
-								</div>
-								@* <!-- Campo de Solicitud -->
-								<div class="md-3">
-									<label for="validationCustom04" class="form-label">Solicitud</label>
-									<select class="form-select" id="solicitud" required>
-										<option value="">Seleccione</option>
-										<option value="portatil">Portátil</option>
-										<option value="tecladoMouse">Teclado/Mouse</option>
-										<option value="monitor">Monitor</option>
-										<option value="aplicacionesEmail">Aplicaciones/Email</option>
-										<option value="celularesLlamadas">Celulares/Llamadas</option>
-										<option value="conectividad">Conectividad</option>
-										<option value="impresora">Impresora</option>
-										<option value="marketingDiseno">Marketing y Diseño</option>
-									</select>
-									<div class="invalid-feedback">
-										Por favor seleccione una opción válida.
-									</div>
-								</div>
-								<!-- Campos ocultos dinámicos -->
-								<div id="errorPortatil" class="mb-3 hidden">
-									<label for="errorPortatilSelect" class="form-label">Error Portátil</label>
-									<select class="form-select" id="errorPortatilSelect" required>
-										<option value="">Seleccione</option>
-										<option>Olvido de contraseña</option>
-										<option>Portátil no inicia/Prende</option>
-										<option>Portátil no carga batería</option>
-										<option>Pantalla Azul</option>
-										<option>Pantalla quemada/Imagen estática</option>
-										<option>PC Lento</option>
-										<option>Error al prender la PC/Pantalla Blanca</option>
-										<option>Asignación PC Funcionario/Cambio</option>
-										<option>Actualización de Driver</option>
-										<option>Mantenimiento a equipo de cómputo</option>
+								<div class="mb-3">
+									<label for="ListaSolicitud" class="form-label">¿Cuál es tu solicitud?</label>
+									<select id="ListaSolicitud" name="ListaSolicitud" required class="form-control select2-show-search form-select">
+										<option value="">Selecciona</option>
 									</select>
 								</div>
-								<div id="errorTecladoMouse" class="mb-3 hidden">
-									<label for="errorTecladoMouseSelect" class="form-label">Error Teclado/Mouse</label>
-									<select class="form-select" id="errorTecladoMouseSelect" required>
-										<option value="">Seleccione</option>
-										<option>No detecta/Teclado</option>
-										<option>Tecla del teclado no funciona</option>
-										<option>No concuerda con las teclas</option>
-										<option>Teclado responde lento</option>
-										<option>No reconoce/Mouse</option>
-										<option>Mouse/No funciona</option>
-										<option>Repuesto/Teclado</option>
-										<option>Cambio/Teclado Mouse</option>
-										<option>Mantenimiento a Teclado/Mouse</option>
-										<option>Asignación temporal Teclado/Mouse</option>
-										<option>Otro</option>
-									</select>
-								</div>
-								<div id="errormonitor" class="mb-3 hidden">
-									<label for="errormonitorSelect" class="form-label">Error Monitor</label>
-									<select class="form-select" id="errormonitorSelect" required>
-										<option value="">Seleccione</option>
-										<option>Monitor no prende</option>
-										<option>Monitor no da imagen</option>
-										<option>Pantalla quemada/Imagen permanente</option>
-										<option>Configuración para el Monitor</option>
-										<option>Intermitencia en la pantalla</option>
-										<option>Otro</option>
-									</select>
-								</div>
-								<div id="erroraplicacionesEmail" class="mb-3 hidden">
-									<label for="erroraplicacionesEmailSelect" class="form-label">Aplicaciones</label>
-									<select class="form-select" id="erroraplicacionesEmailSelect" required>
-										<option value="">Seleccione</option>
-										<option>Valuez BPM</option>
-										<option>ISAAC</option>
-										<option>CRM</option>
-										<option>Lyntik</option>
-										<option>Office 365</option>
-										<option>Outlook</option>
-										<option>Onedrive</option>
-										<option>SharePoint</option>
-										<option>Teams</option>
-										<option>Navegador</option>
-										<option>PDF</option>
-										<option>Aplicación de banco</option>
-										<option>Página convival</option>
-										<option>Base de datos</option>
-										<option>kaspersky/Antivirus</option>
-										<option>Otro</option>
-									</select>
-								</div>
-								<div id="errorSolicitudAplicaciones" class="mb-3 hidden">
-									<label for="errorSolicitudAplicacionesSelect" class="form-label">Error/solicitud aplicaciones</label>
-									<select class="form-select" id="errorSolicitudAplicacionesSelect" required>
-										<option value="">Seleccione</option>
-										<option>Asignación de rol</option>
-										<option>Olvido de contraseña</option>
-										<option>Instalación de aplicación</option>
-										<option>Desinstalación de aplicación</option>
-										<option>Actualización de aplicativo</option>
-										<option>Cambio de idioma/Aplicación</option>
-										<option>Fallo de aplicación</option>
-										<option>Fallo de carga de información/Aplicaciones</option>
-										<option>Error/Carpeta compartida</option>
-										<option>Fallo al abrir archivo</option>
-										<option>Fallo al descargar archivo</option>
-										<option>Fallo al cargar archivo</option>
-										<option>Fallo de link/Error</option>
-										<option>Solicitud de cargar información</option>
-										<option>Solicitud de acceso/Email</option>
-										<option>Solicitud de asignación Usuario/Email</option>
-										<option>Ajuste de visualización de documentos</option>
-										<option>Asignación de licencia</option>
-										<option>Lista con información incompleta</option>
-										<option>Solicitud de acceso a sitio Web</option>
-										<option>Otro</option>
-									</select>
-								</div>
-								<div id="errorcelularesLlamadas" class="mb-3 hidden">
-									<label for="celularesLlamadasSelect" class="form-label">Error Celular</label>
-									<select class="form-select" id="celularesLlamadasSelect" required>
-										<option value="">Seleccione</option>
-										<option>Configuración Aplicativo Enlace</option>
-										<option>No conecta con el portátil</option>
-										<option>No salen llamadas</option>
-										<option>No se escucha en la diademada</option>
-										<option>No me escuchan en la llamada</option>
-										<option>Se escucha interferencia</option>
-										<option>Whatsapp Business/Error</option>
-										<option>Descarga de aplicaciones</option>
-										<option>Desinstalación de aplicaciones</option>
-										<option>Cambio de numero de SIM</option>
-										<option>Otro</option>
-									</select>
-								</div>
-								<div id="errorconectividad" class="mb-3 hidden">
-									<label for="conectividadSelect" class="form-label">Error conectividad</label>
-									<select class="form-select" id="conectividadSelect" required>
-										<option value="">Seleccione</option>
-										<option>No conecta a internet/Wifi</option>
-										<option>No conecta a internet/Cable</option>
-										<option>Test de velocidad</option>
-										<option>Otro</option>
-									</select>
-								</div>
-								<div id="errorimpresora" class="mb-3 hidden">
-									<label for="impresoraSelect" class="form-label">Error de impresora</label>
-									<select class="form-select" id="impresoraSelect" required>
-										<option value="">Seleccione</option>
-										<option>No envía el Scanner</option>
-										<option>No Detecta/Reconoce impresora</option>
-										<option>Papel Atascado</option>
-										<option>Solicita cambio de tóner</option>
-										<option>Registro de IMEL Funcionario</option>
-										<option>Instalación de impresora</option>
-										<option>Otro</option>
-									</select>
-								</div>
-								<div id="" class="mb-3 hidden">
-									<label for="" class="form-label">Marca</label>
-									<select class="form-select" id="" required>
-										<option value="">Seleccione</option>
-										<option>Sevipaz</option>
-										<option>Confival Capital</option>
-										<option>Ankor</option>
-										<option>Sentencias</option>
-										<option>Otro</option>
-									</select>
-								</div>
-								<div id="" class="mb-3 hidden">
-									<label for="" class="form-label"></label>
-									<select class="form-select" id="" required>
-										<option value="">Seleccione</option>
-										<option>Diseño Presentaciones</option>
-										<option>Diseño Tarjetas</option>
-										<option>Diseño Correo Electrónico</option>
-										<option>Diseño Piezas redes</option>
-										<option>Diseño Web</option>
-										<option>Diseño pieza impresa</option>
-										<option>Diseño de Campañas</option>
-										<option>Otro</option>
-									</select>
-								</div> *@
 								<div class="mb-3">
 									<label for="" class="form-label">Descripcción</label>
 									<textarea class="form-control mb-4" placeholder="Haga una descripción del problema" rows="3"></textarea>

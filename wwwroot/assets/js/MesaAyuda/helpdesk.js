@@ -72,7 +72,7 @@ function ListaSolicitud() {
         url: "/MesaAyuda/ListaSolicitud",
         type: "GET",
         success: function (data) {
-            const select = $('#userId');
+            const select = $('#ListaSolicitud');
             select.empty();
             select.append('<option value="">Selecciona</option>');
             data.forEach(function (item) {

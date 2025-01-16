@@ -56,67 +56,6 @@ namespace noa.Controllers
             }
         }
 
-        //public IActionResult NuevoTicket()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> NuevoTicket(MesadeAyudaDTO ticket, IFormFile captura)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        // Manejar el archivo adjunto
-        //        if (captura != null && captura.Length > 0)
-        //        {
-        //            var fileName = Path.GetFileName(captura.FileName);
-        //            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads", fileName);
-
-        //            using (var stream = new FileStream(filePath, FileMode.Create))
-        //            {
-        //                await captura.CopyToAsync(stream);
-        //            }
-
-        //            // Guardar la ruta relativa del archivo
-        //            ticket.Imagen = $"/Uploads/{fileName}";
-        //        }
-
-        //        // Asignar el usuario autenticado y la fecha de creación
-        //        ticket.Usuario = User.Identity?.Name ?? "Anónimo";
-        //        ticket.FechaCreacion = DateTime.Now;
-
-        //        // Convertir el objeto a una cadena de consulta
-        //        var queryParams = new Dictionary<string, string>
-        //            {
-        //                { "Usuario", ticket.Usuario },
-        //                { "Descripcion", ticket.Descripcion },
-        //                { "FechaCreacion", ticket.FechaCreacion.ToString("o") }, // Formato ISO 8601
-        //                { "Captura", ticket.Imagen ?? "" }
-        //            };
-
-        //        // Crear el query string
-        //        var queryString = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={Uri.EscapeDataString(kvp.Value)}"));
-
-        //        using var client = new HttpClient();
-        //        var baseUrl = _configuration["Inven:Prueba"];
-        //        var apiUrl = $"{baseUrl}/Solicitud/Linq?{queryString}";
-
-        //        // Realizar la solicitud HTTP
-        //        var response = await client.GetAsync(apiUrl);
-
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            TempData["SuccessMessage"] = "El ticket se ha creado exitosamente.";
-        //            return RedirectToAction("Index");
-        //        }
-        //        else
-        //        {
-        //            ModelState.AddModelError("", "Error al guardar el ticket en el servidor.");
-        //        }
-        //    }
-
-        //    return View(ticket);
-        //}
         [HttpGet]
         public async Task<List<MesadeAyudaDTO>> ListaSolicitud()
         {
