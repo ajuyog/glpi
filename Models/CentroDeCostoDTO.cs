@@ -1,4 +1,7 @@
-﻿namespace noa.Models
+﻿using Newtonsoft.Json;
+using System.Text.Json.Serialization;
+
+namespace noa.Models
 {
     public class CentroCosto
     {

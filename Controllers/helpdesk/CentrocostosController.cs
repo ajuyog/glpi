@@ -27,8 +27,8 @@ namespace noa.Controllers.helpdesk
             var client = new HttpClient();
 
             // Realiza la solicitud GET
-            var response = await client.GetAsync($"{_configuration["Inven:URL"]}/CentroDeCosto");
-
+            //var response = await client.GetAsync($"{_configuration["Inven:URL"]}/CentroDeCosto");
+            var response = await client.GetAsync($"{_configuration["Inven:URL"]}/CentroDeCosto/linq combinado");
             if (response.IsSuccessStatusCode)
             {
                 var jsonResponse = await response.Content.ReadAsStringAsync();

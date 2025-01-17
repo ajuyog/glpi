@@ -8,11 +8,16 @@ public class AreaController : Controller
 {
     private readonly ILogger<AreaController> _logger;
     private readonly IConfiguration _configuration;
+    private new readonly string Url;
+
 
     public AreaController(ILogger<AreaController> logger, IConfiguration configuration)
     {
         _logger = logger;
         _configuration = configuration;
+        //Url = configuration["Inven:URL"];
+        Url = _configuration["Inven:URL"];
+
     }
 
     [HttpGet]
@@ -25,24 +30,24 @@ public class AreaController : Controller
     public async Task<List<AreaDTO>> ListaDTO()
     {
         var client = new HttpClient();
-
-        // Realiza la solicitud GET
-        var response = await client.GetAsync($"{_configuration["Inven:URL"]}/Area");
+        //var request = new HttpRequestMessage(HttpMethod.Get, "{_configuration["HG:UR"]}/ActividadMovil");
+        //var response = await client.SendAsync(request);
+        var response = await client.GetAsync($"{Url}/Area");
         if (response.IsSuccessStatusCode)
         {
-            var jsonResponse = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<List<AreaDTO>>(jsonResponse);
+            var re = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<List<AreaDTO>>(re);
         }
         else
         {
-            return new List<AreaDTO>();
+            return [];
         }
     }
 
     public async Task<List<AreaDTO>> BuscaId(string buscaid)
     {
         var client = new HttpClient();
-        var request = await client.GetAsync($"{_configuration["Inven:URL"]}/{buscaid}");
+        var request = await client.GetAsync($"{Url}/{buscaid}");
         if (request.IsSuccessStatusCode)
         {
             var jsonResponse = await request.Content.ReadAsStringAsync();
@@ -63,7 +68,7 @@ public class AreaController : Controller
         if (areaDTO.Id != 0)
         {
             var httpClient = new HttpClient();
-            var response = await httpClient.PutAsJsonAsync($"{_configuration["Inven:URL"]}/{areaDTO.Id}", areaDTO);
+            var response = await httpClient.PutAsJsonAsync($"{Url}/{areaDTO.Id}", areaDTO);
             if (response.IsSuccessStatusCode)
             {
                 //var responseData = await response.Content.ReadAsStringAsync();           
@@ -87,7 +92,7 @@ public class AreaController : Controller
             else
             {
                 var client = new HttpClient();
-                var request = await client.PostAsJsonAsync($"{_configuration["Inven:URL"]}", areaDTO);
+                var request = await client.PostAsJsonAsync($"{Url}", areaDTO);
                 if (request.IsSuccessStatusCode)
                 {
                     //var re = await request.Content.ReadAsStringAsync();
@@ -110,7 +115,7 @@ public class AreaController : Controller
     public async Task<bool> EliminarArea(string deleteid)
     {
         var client = new HttpClient();
-        var response = await client.DeleteAsync($"{_configuration["Inven:URL"]}/{deleteid}");
+        var response = await client.DeleteAsync($"{Url}/{deleteid}");
         if (response.IsSuccessStatusCode)
         {
             Console.WriteLine("Área eliminada exitosamente.");

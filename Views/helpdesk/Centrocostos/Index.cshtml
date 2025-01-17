@@ -15,20 +15,63 @@
     </button>
 </div>
 <div class="row">
-    @{
-        var groupedModel = Model.EquiposSolos.GroupBy(item => item.Area);
-    }
-    @foreach (var group in groupedModel)
+    @if (Model != null && Model.EquiposSolos != null && Model.EquiposSolos.Count > 0)
     {
+        var groupedModel = Model.EquiposSolos.GroupBy(item => item.Area);
+        @foreach (var group in groupedModel)
+        {
+            <div class="col-12">
+                <div class="card custom-card">
+                    <div class="card-body" style="padding: 0rem;">
+                        <div class="text-center mt-4">
+                            <h1>@group.Key</h1> <!-- Nombre área -->
+                        </div>
+                        <div class="table-responsive">
+                            <div class="card-body">
+                                <table class="table text-nowrap text-md-nowrap table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo de elemento</th>
+                                            <th>Número de serial</th>
+                                            <th>Valor unitario</th>
+                                            <th>Valor del IVA</th>
+                                            <th>Valor en Bruto</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in group)
+                                        {
+                                            <tr>
+                                                <td>@item.Marca</td>
+                                                <td>@item.NumeroSerial</td>
+                                                <td>@($"$ {item.VlrNeto}")</td>
+                                                <td>19%</td>
+                                                <td>@($"$ {item.VlrNeto}")</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+
         <div class="col-12">
             <div class="card custom-card">
                 <div class="card-body" style="padding: 0rem;">
                     <div class="text-center mt-4">
-                        <h1>@group.Key</h1> <!-- Nombre área -->
+                        <h1>No existen registros</h1> <!-- Nombre área -->
                     </div>
                     <div class="table-responsive">
                         <div class="card-body">
-                            <table class="table text-nowrap text-md-nowrap table-bordered">
+                            <h1>No existen registros</h1> <!-- Nombre área -->
+
+                            @* <table class="table text-nowrap text-md-nowrap table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Tipo de elemento</th>
@@ -39,24 +82,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in group)
-                                    {
-                                        <tr>
-                                            <td>@item.Marca</td>
-                                            <td>@item.NumeroSerial</td>
-                                            <td>@($"$ {item.VlrNeto}")</td>
-                                            <td>19%</td>
-                                            <td>@($"$ {item.VlrNeto}")</td>
-                                        </tr>
-                                    }
+
                                 </tbody>
-                            </table>
+                            </table> *@
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     }
+
 </div>
 <div class="row">
     <div class="d-flex flex-row-reverse">
@@ -67,33 +102,47 @@
                         <h1>Resumen</h1>
                     </div>
                     <div class="table-responsive">
-                        <table class="table text-nowrap text-md-nowrap table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Area</th>
-                                    <th>Total Equipos</th>
-                                    <th>Total Area</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ( var item in Model.ValorPorArea){
+
+                        @if (Model != null && Model.EquiposSolos != null && Model.ValorPorArea.Count > 0 || Model != null && Model.EquiposSolos != null && Model.TotalGeneral.Count > 0)
+                        {
+                            <table class="table text-nowrap text-md-nowrap table-bordered">
+                                <thead>
                                     <tr>
-                                        <td>@item.NombreArea</td>
-                                        <td>@item.TotalEquipos</td>
-                                        <td>@($"$ {item.AreaVlrNeto}")</td>
+                                        <th>Area</th>
+                                        <th>Total Equipos</th>
+                                        <th>Total Area</th>
                                     </tr>
-                                }
-                            </tbody> 
-                            <tbody> 
-                                @foreach ( var item in Model.TotalGeneral){
-                                    <tr>
-                                        <td>Total a pagar</td>
-                                        <td></td>
-                                        <td>@($"$ {item.TotalVlrNeto}")</td>
-                                    </tr>
-                                }
-                            </tbody> 
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @if (Model != null && Model.EquiposSolos != null && Model.ValorPorArea.Count > 0)
+                                    {
+                                        @foreach ( var item in Model.ValorPorArea){
+                                            <tr>
+                                                <td>@item.NombreArea</td>
+                                                <td>@item.TotalEquipos</td>
+                                                <td>@($"$ {item.AreaVlrNeto}")</td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody> 
+                                <tbody>
+                                    @if (Model != null && Model.EquiposSolos != null && Model.TotalGeneral.Count > 0)
+                                    {
+                                        @foreach (var item in Model.TotalGeneral)
+                                        {
+                                            <tr>
+                                                <td>Total a pagar</td>
+                                                <td></td>
+                                                <td>@($"$ {item.TotalVlrNeto}")</td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody> 
+                            </table>
+                        }
+                        else{
+                            <h1>No existen registros</h1> <!-- Nombre área -->
+                        }
                     </div>
                 </div>
             </div>
@@ -105,10 +154,17 @@
     <div class="container">
         <div class="header text-center">
             <h1>Factura centro de costos</h1>
-            @foreach (var i in Model.ValorPorArea)
+            @if (Model != null && Model.EquiposSolos != null && Model.ValorPorArea.Count > 0)
+            {
+                @foreach (var i in Model.ValorPorArea)
             {
                 <p class="subtitle">@i.Factura</p>
                 <p class="subtitle">@i.Fecha</p>
+            }
+            }
+            else
+            {
+                <h1>No existen registros</h1> <!-- Nombre área -->
             }
         </div>
         <div class="row">
